@@ -4,47 +4,52 @@
   <body class="body" class="d-flex flex-column">
   <header>
     <img class="logo-img" src="../../../assets/images/small-logo.png" alt="small-logo.png">
-    <h1>RecycleIT</h1>
-    <p>Create an account and make your way towards <strong>helping the planet!</strong></p>
+    <h1>Personal Finance Manager</h1>
+    <p>Your smart solution for <strong>managing your personal finances!</strong></p>
   </header>
 
-  <form [formGroup]="loginForm" (submit)="onSubmit(loginForm)" action="" method="post" class="form-login text-center"
-        *ngIf="!isLoading">
-    <div class="form-group"></div>
-    <h2 style="color: white">Login</h2>
-    <div class="form-floating mb-3">
-      <input type="email" class="form-control" id="input-email-address" name="input-email-address"
-             placeholder="Enter your email address..." formControlName="emailAddress">
+  <div class="loading-spinner" *ngIf="isLoading">
+    <app-loading-spinner-login></app-loading-spinner-login>
+    <p class="logging-text">Logging in...</p>
+  </div>
 
-      <label for="input-email-address" class="form-label">Email address</label>
-      <div id="email-tooltip"></div>
-      <small class="error-message"
-             *ngIf="showEmailAddressError">
-        Invalid email address!
-      </small>
-    </div>
-    <div class="form-floating mb-3">
-      <input type="password" class="form-control" id="input-password" name="input-password"
-             placeholder="Enter your password..." formControlName="password">
-      <label for="input-password">Password</label>
-      <div id="password-tooltip">
+    <form [formGroup]="loginForm" (submit)="onSubmit(loginForm)" action="" method="post" class="form-login text-center"
+          *ngIf="!isLoading">
+      <div class="form-group"></div>
+      <h2 style="color: white">Login</h2>
+      <div class="form-floating mb-3">
+        <input type="email" class="form-control" id="input-email-address" name="input-email-address"
+               placeholder="Enter your email address..." formControlName="emailAddress">
+
+        <label for="input-email-address" class="form-label">Email address</label>
+        <div id="email-tooltip"></div>
         <small class="error-message"
-               *ngIf="showPasswordError">
-          Invalid password!
+               *ngIf="showEmailAddressError">
+          Invalid email address!
         </small>
       </div>
-      <small class="error-message"
-             *ngIf=responseError>
-        Invalid credentials!
-      </small>
-    </div>
-    <hr style="color: white">
+      <div class="form-floating mb-3">
+        <input type="password" class="form-control" id="input-password" name="input-password"
+               placeholder="Enter your password..." formControlName="password">
+        <label for="input-password">Password</label>
+        <div id="password-tooltip">
+          <small class="error-message"
+                 *ngIf="showPasswordError">
+            Invalid password!
+          </small>
+        </div>
+        <small class="error-message"
+               *ngIf=responseError>
+          Invalid credentials!
+        </small>
+      </div>
+      <hr style="color: white">
 
-    <button type="submit" class="btn btn-primary w-100 mb-2" id="login-button">Login</button>
+      <button type="submit" class="btn btn-primary w-100 mb-2" id="login-button">Login</button>
 
-    <a class="btn btn-secondary w-100 mb-2" role="button" id="register-button" (click)="createAccount()">Create an account</a>
+      <a class="btn btn-secondary w-100 mb-2" role="button" id="register-button" (click)="createAccount()">Create an account</a>
 
-  </form>
+    </form>
 
   </body>
 

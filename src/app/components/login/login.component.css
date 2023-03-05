@@ -1,3 +1,7 @@
+body {
+  background: radial-gradient(#C47AFF 25%, #00a1f2 75%);
+}
+
 header {
   align-content: center;
   color: white;
@@ -28,13 +32,13 @@ header img {
 }
 
 #login-button, #signup-button, #update-account-button {
-  background-color: forestgreen;
-  border-color: forestgreen;
+  background-color: #00a1f2;
+  border-color: #00a1f2;
 }
 
 #login-button:hover, #signup-button:hover, #update-account-button:hover {
-  background-color: limegreen;
-  border-color: limegreen;
+  background-color: #0b5f89;
+  border-color: #0b5f89;
 }
 
 .loading-spinner {
