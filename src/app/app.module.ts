@@ -4,7 +4,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { AppRoutingModule, RoutingComponents } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { LoginComponent } from './components/login/login.component';
-import {ReactiveFormsModule} from "@angular/forms";
+import {FormsModule, ReactiveFormsModule} from "@angular/forms";
 import { MainViewComponent } from './components/main-view/main-view.component';
 import { MainPageComponent } from './components/main-view/main-page/main-page.component';
 import {LoginService} from "./services/login-service";
@@ -21,13 +21,14 @@ import { LoadingSpinnerLoginComponent } from './components/utils/loading-spinner
     MainPageComponent,
     LoadingSpinnerLoginComponent
   ],
-  imports: [
-    BrowserModule,
-    AppRoutingModule,
-    ReactiveFormsModule,
-    HttpClientModule,
-    MatProgressSpinnerModule
-  ],
+    imports: [
+        BrowserModule,
+        AppRoutingModule,
+        ReactiveFormsModule,
+        HttpClientModule,
+        MatProgressSpinnerModule,
+        FormsModule
+    ],
   providers: [LoginService],
   bootstrap: [AppComponent]
 })

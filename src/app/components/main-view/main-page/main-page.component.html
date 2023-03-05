@@ -1,1 +1,31 @@
-<p>pl3</p>
+<!DOCTYPE html>
+
+<html>
+
+  <body class="body" class="d-flex flex-column">
+
+    <form (ngSubmit)="onSubmit()" #myForm="ngForm">
+
+      <div *ngFor="let inputField of inputFields">
+
+        <label for="{{inputField.name}}">{{inputField.label}}</label>
+        <input type="{{inputField.type}}" name="{{inputField.name}}" [(ngModel)]="inputField.value" [required] = "inputField.required">
+        <button (click)="removeFieldFromInputFields(inputField)">(X)</button>
+
+      </div>
+
+      <div *ngFor="let itemInputField of itemInputFields">
+
+        <label for="{{itemInputField.nameName}}">{{itemInputField.label}}</label>
+        <input type="{{itemInputField.nameType}}" name="{{itemInputField.nameName}}" [(ngModel)]="itemInputField.nameValue" [required] = "itemInputField.nameRequired">
+        <input type="{{itemInputField.priceType}}" name="{{itemInputField.priceName}}" [(ngModel)]="itemInputField.priceValue" [required] = "itemInputField.priceRequired">
+        <button (click)="removeItemFieldFromInputFields(itemInputField)">(X)</button>
+
+      </div>
+
+      <button type="submit" [disabled]="!myForm.valid">Submit</button>
+      <button (click)="addFieldFromButton()">Add Field</button>
+    </form>
+  </body>
+
+</html>

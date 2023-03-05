@@ -9,6 +9,7 @@ import jwtDecode from "jwt-decode";
 @Injectable({
   providedIn: 'root'
 })
+
 export class LoginService {
 
   loggedUser = new BehaviorSubject<UserModel>(null!);
@@ -18,6 +19,7 @@ export class LoginService {
   private tokenExpirationTimer: any;
 
   constructor(private http: HttpClient, private router: Router) {
+
   }
 
   login(email: string, password: string) {
