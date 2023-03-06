@@ -1,5 +1,7 @@
 import {Component} from '@angular/core';
 import {ReceiptService} from "../../../services/receipt-service";
+import {ActivatedRoute, Router} from "@angular/router";
+import {Location} from "@angular/common";
 
 @Component({
   selector: 'app-main-page',
@@ -14,8 +16,16 @@ export class MainPageComponent {
 
   token!: string | null;
 
-  constructor(private receiptService: ReceiptService) {
+  route: ActivatedRoute;
+
+  router: Router;
+
+  receivedData: any;
+
+  constructor(private receiptService: ReceiptService, route: ActivatedRoute, router: Router, private location: Location) {
     this.receiptService = receiptService;
+    this.route = route;
+    this.router = router;
 
     let noFields = 10;
     this.inputFields = [];
@@ -38,6 +48,9 @@ export class MainPageComponent {
   }
 
   ngOnInit(): void {
+    // @ts-ignore
+    this.receivedData = this.location.getState().body;
+    console.log(this.receivedData);
     this.populateFields();
   }
 
@@ -146,34 +159,30 @@ export class MainPageComponent {
   }
 
   populateFields() {
-    this.receiptService.getAllTest().subscribe(
-      data => {
         this.inputFields = [];
 
-        if (data.body.retailer != null) {
-          this.addRetailerField(data.body.retailer);
+        if (this.receivedData.retailer != null) {
+          this.addRetailerField(this.receivedData.retailer);
         }
 
-        if (data.body.receiptDate != null) {
-          this.addReceiptDateField(data.body.receiptDate);
+        if (this.receivedData.receiptDate != null) {
+          this.addReceiptDateField(this.receivedData.receiptDate);
         }
 
-        if (data.body.calculatedTotal != null) {
-          this.addCalculatedTotalField(data.body.calculatedTotal);
+        if (this.receivedData.calculatedTotal != null) {
+          this.addCalculatedTotalField(this.receivedData.calculatedTotal);
         }
 
-        if (data.body.detectedTotal != null) {
-          this.addDetectedTotalField(data.body.detectedTotal);
+        if (this.receivedData.detectedTotal != null) {
+          this.addDetectedTotalField(this.receivedData.detectedTotal);
         }
 
-        let itemNames: Array<string> = data.body.itemNames;
-        let itemPrices: Array<number> = data.body.itemPrices;
+        let itemNames: Array<string> = this.receivedData.itemNames;
+        let itemPrices: Array<number> = this.receivedData.itemPrices;
 
         for (let i = 0; i < itemNames.length; i++) {
           this.addItemFields(itemNames[i], itemPrices[i], i)
         }
-      }
-    )
   }
 }
 
