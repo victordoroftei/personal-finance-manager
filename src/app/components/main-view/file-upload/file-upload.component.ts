@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import {ReceiptService} from "../../../services/receipt-service";
 import {NavigationExtras, Router} from "@angular/router";
-import {ReceiptExtractedDataModel} from "../../../models/receipt-extracted-data.model";
+import {ReceiptModel} from "../../../models/receipt.model";
 
 @Component({
   selector: 'app-file-upload',
@@ -31,10 +31,9 @@ export class FileUploadComponent {
   }
 
   uploadFile() {
-    console.log("aicea");
     this.receiptService.uploadFile(this.formData).subscribe(data => {
       if (data.status == 202) {
-        let body: ReceiptExtractedDataModel = data.body;
+        let body: ReceiptModel = data.body;
         let navigationExtras: NavigationExtras = {
           state: {
             body

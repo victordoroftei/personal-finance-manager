@@ -4,11 +4,12 @@ import {LoginComponent} from "./components/login/login.component";
 import {AuthGuard} from "./components/login/auth.guard";
 import {MainViewComponent} from "./components/main-view/main-view.component";
 import {MainPageComponent} from "./components/main-view/main-page/main-page.component";
+import {FileUploadComponent} from "./components/main-view/file-upload/file-upload.component";
 
 const routes: Routes = [
   {
     path: '',
-    redirectTo: 'main-view/main-page',
+    redirectTo: 'main-view/file-upload',
     pathMatch: 'full'
   },
   {
@@ -22,12 +23,16 @@ const routes: Routes = [
     children: [
       {
         path: '',
-        redirectTo: 'main-page',
+        redirectTo: 'file-upload',
         pathMatch: 'full'
       },
       {
         path: "main-page",
         component: MainPageComponent
+      },
+      {
+        path: "file-upload",
+        component: FileUploadComponent
       }
     ]
   }

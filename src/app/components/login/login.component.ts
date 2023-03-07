@@ -66,7 +66,7 @@ export class LoginComponent {
           const payload = jwtDecode(token!) as JWTPayload;
 
           if (payload.scope === "ROLE_ADMIN") {
-            this.router.navigate(["/main-view/main-page"]);
+            this.router.navigate(["/main-view/file-upload"]);
           }
         },
         error => {

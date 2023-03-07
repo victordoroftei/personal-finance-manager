@@ -2,6 +2,7 @@ import {Component} from '@angular/core';
 import {ReceiptService} from "../../../services/receipt-service";
 import {ActivatedRoute, Router} from "@angular/router";
 import {Location} from "@angular/common";
+import {ReceiptModel} from "../../../models/receipt.model";
 
 @Component({
   selector: 'app-main-page',
@@ -22,10 +23,13 @@ export class MainPageComponent {
 
   receivedData: any;
 
+  imagePath: string;
+
   constructor(private receiptService: ReceiptService, route: ActivatedRoute, router: Router, private location: Location) {
     this.receiptService = receiptService;
     this.route = route;
     this.router = router;
+    this.imagePath = "";
 
     let noFields = 10;
     this.inputFields = [];
@@ -33,6 +37,7 @@ export class MainPageComponent {
     for (let i = 0; i < noFields; i++) {
       let inputField: InputField = {
         name: `name${i}`,
+        id: `id${i}`,
         label: `label${i}`,
         value: `value${i}`,
         type: 'text',
@@ -44,29 +49,92 @@ export class MainPageComponent {
   }
 
   onSubmit() {
-    console.log(this.inputFields);
+    let calculatedTotal = this.getValueOfInputFieldWithGivenId("calculated-total");
+    let actualCalculatedTotal = null;
+    if (calculatedTotal !== null) {
+      actualCalculatedTotal = +calculatedTotal;
+    }
+
+    let detectedTotal = this.getValueOfInputFieldWithGivenId("detected-total");
+    let actualDetectedTotal = null;
+    if (detectedTotal !== null) {
+      actualDetectedTotal = +detectedTotal;
+    }
+
+    let retailer = this.getValueOfInputFieldWithGivenId("retailer");
+    let receiptDate = this.getValueOfInputFieldWithGivenId("receiptDate");
+
+    let itemNames: Array<string> = [];
+    let itemPrices: Array<number> = [];
+    for (let i = 0; i < this.itemInputFields.length; i++) {
+      let item = this.getValueOfItemInputFieldWithGivenIndex(i);
+
+      itemNames.push(item.name);
+      itemPrices.push(item.price);
+    }
+
+    let receipt = new ReceiptModel(itemNames, itemPrices,
+      actualCalculatedTotal, actualDetectedTotal, retailer, this.imagePath, receiptDate);
+    console.log(receipt);
+    this.receiptService.addReceipt(receipt).subscribe(data => {
+      if (data.status == 201) {
+        alert("DA");
+      } else {
+        alert("NU");
+      }
+    });
   }
 
   ngOnInit(): void {
     // @ts-ignore
     this.receivedData = this.location.getState().body;
     console.log(this.receivedData);
+    this.imagePath = this.receivedData.imagePath;
     this.populateFields();
   }
 
-  addFieldFromButton() {
-    let newInputField: InputField = {
-      name: `newName`,
-      label: `newLabel`,
-      value: `newValue`,
-      type: `text`,
-      required: true
-    };
+  getValueOfInputFieldWithGivenId(id: string) {
+    for (let i = 0; i < this.inputFields.length; i++) {
+      if (this.inputFields[i].id === id) {
+        return this.inputFields[i].value;
+      }
+    }
 
-    this.inputFields.push(newInputField);
+    return null;
   }
 
-  removeFieldFromInputFields(inputField: InputField) {
+  getValueOfItemInputFieldWithGivenIndex(index: number) {
+    let name: string = this.itemInputFields[index].nameValue;
+    let price: number = +this.itemInputFields[index].priceValue;  // +string converts the string to a number
+    let item: ItemSimple = {
+      name: name,
+      price: price
+    };
+
+    return item;
+  }
+
+  addFieldFromButton(event: any): void {
+    event.preventDefault();
+
+    let newItemInputField: ItemInputField = {
+      label: `Item ${this.itemInputFields.length + 1}:`,
+      nameName: `name-item${this.itemInputFields.length + 1}`,
+      nameType: 'text',
+      nameId: `name-item${this.itemInputFields.length + 1}`,
+      nameValue: '',
+      nameRequired: true,
+      priceName: `price-item${this.itemInputFields.length + 1}`,
+      priceType: 'text',
+      priceId: `price-item${this.itemInputFields.length + 1}`,
+      priceValue: 0,
+      priceRequired: true
+    };
+
+    this.itemInputFields.push(newItemInputField);
+  }
+
+  removeFieldFromInputFields(inputField: InputField): void {
     // We will remove the field with the name equal to the name of the input field that needs to be removed.
 
     let inputFieldIndex = 0;
@@ -81,7 +149,7 @@ export class MainPageComponent {
     this.inputFields.splice(inputFieldIndex, 1);  // Removes the element of the array with the given index
   }
 
-  removeItemFieldFromInputFields(itemInputField: ItemInputField) {
+  removeItemFieldFromInputFields(itemInputField: ItemInputField): void {
     let inputFieldIndex = 0;
 
     for (let i = 0; i < this.itemInputFields.length; i++) {
@@ -94,9 +162,10 @@ export class MainPageComponent {
     this.itemInputFields.splice(inputFieldIndex, 1);
   }
 
-  addRetailerField(retailerName: string) {
+  addRetailerField(retailerName: string): void {
     let inputField: InputField = {
       name: 'retailer',
+      id: 'retailer',
       label: 'Retailer:',
       type: 'text',
       value: retailerName,
@@ -106,9 +175,10 @@ export class MainPageComponent {
     this.inputFields.push(inputField);
   }
 
-  addReceiptDateField(receiptDate: string) {
+  addReceiptDateField(receiptDate: string): void {
     let inputField: InputField = {
       name: 'receipt-date',
+      id: 'receipt-date',
       label: 'Receipt Date:',
       type: 'datetime-local',
       value: receiptDate.replace('T', ' '),
@@ -118,9 +188,10 @@ export class MainPageComponent {
     this.inputFields.push(inputField);
   }
 
-  addCalculatedTotalField(calculatedTotal: number) {
+  addCalculatedTotalField(calculatedTotal: number): void {
     let inputField: InputField = {
       name: 'calculated-total',
+      id: 'calculated-total',
       label: 'Calculated Total:',
       type: 'text',
       value: calculatedTotal.toString(),
@@ -130,9 +201,10 @@ export class MainPageComponent {
     this.inputFields.push(inputField);
   }
 
-  addDetectedTotalField(detectedTotal: number) {
+  addDetectedTotalField(detectedTotal: number): void {
     let inputField: InputField = {
       name: 'detected-total',
+      id: 'detected-total',
       label: 'Detected Total:',
       type: 'text',
       value: detectedTotal.toString(),
@@ -142,14 +214,16 @@ export class MainPageComponent {
     this.inputFields.push(inputField);
   }
 
-  addItemFields(itemName: string, itemPrice: number, index: number) {
+  addItemFields(itemName: string, itemPrice: number, index: number): void {
     let itemInputField: ItemInputField = {
       label: `Item ${index + 1}:`,
       nameName: `name-item${index + 1}`,
+      nameId: `name-item${index + 1}`,
       nameType: 'text',
       nameValue: itemName,
       nameRequired: true,
       priceName: `price-item${index + 1}`,
+      priceId: `price-item${index + 1}`,
       priceType: 'text',
       priceValue: itemPrice,
       priceRequired: true
@@ -158,7 +232,7 @@ export class MainPageComponent {
     this.itemInputFields.push(itemInputField);
   }
 
-  populateFields() {
+  populateFields(): void {
         this.inputFields = [];
 
         if (this.receivedData.retailer != null) {
@@ -192,6 +266,7 @@ type InputField = {
   type: string;
   value: string;
   required: boolean;
+  id: string;
 }
 
 type ItemInputField = {
@@ -204,4 +279,11 @@ type ItemInputField = {
   priceValue: number;
   nameRequired: boolean;
   priceRequired: boolean;
+  nameId: string;
+  priceId: string;
+}
+
+type ItemSimple = {
+  name: string;
+  price: number;
 }
