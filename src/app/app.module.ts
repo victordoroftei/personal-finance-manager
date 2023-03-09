@@ -6,7 +6,7 @@ import { AppComponent } from './app.component';
 import { LoginComponent } from './components/login/login.component';
 import {FormsModule, ReactiveFormsModule} from "@angular/forms";
 import { MainViewComponent } from './components/main-view/main-view.component';
-import { MainPageComponent } from './components/main-view/main-page/main-page.component';
+import { ReceiptFormComponent } from './components/main-view/receipt-form/receipt-form.component';
 import {LoginService} from "./services/login-service";
 import {HttpClientModule} from "@angular/common/http";
 import {MatProgressSpinnerModule} from "@angular/material/progress-spinner";
@@ -14,6 +14,7 @@ import { LoadingSpinnerLoginComponent } from './components/utils/loading-spinner
 import { FileUploadComponent } from './components/main-view/file-upload/file-upload.component';
 import {MatButtonModule} from "@angular/material/button";
 import {MatIconModule} from "@angular/material/icon";
+import { MainPageComponent } from './components/main-view/main-page/main-page.component';
 
 @NgModule({
   declarations: [
@@ -21,9 +22,10 @@ import {MatIconModule} from "@angular/material/icon";
     RoutingComponents,
     LoginComponent,
     MainViewComponent,
-    MainPageComponent,
+    ReceiptFormComponent,
     LoadingSpinnerLoginComponent,
-    FileUploadComponent
+    FileUploadComponent,
+    MainPageComponent
   ],
   imports: [
     BrowserModule,
