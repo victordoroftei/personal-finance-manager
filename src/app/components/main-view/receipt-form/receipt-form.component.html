@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+
+<html>
+
+  <body class="body" class="d-flex flex-column">
+
+    <form (ngSubmit)="onSubmit()" #myForm="ngForm">
+
+      <div *ngFor="let inputField of inputFields">
+
+        <label for="{{inputField.name}}">{{inputField.label}}</label>
+        <input type="{{inputField.type}}" name="{{inputField.name}}" [(ngModel)]="inputField.value" [required] = "inputField.required" id="{{inputField.id}}">
+        <button (click)="removeFieldFromInputFields(inputField)">(X)</button>
+
+      </div>
+
+      <div *ngFor="let itemInputField of itemInputFields">
+
+        <label for="{{itemInputField.nameName}}">{{itemInputField.label}}</label>
+        <input type="{{itemInputField.nameType}}" name="{{itemInputField.nameName}}" [(ngModel)]="itemInputField.nameValue" [required] = "itemInputField.nameRequired" id="{{itemInputField.nameId}}">
+        <input type="{{itemInputField.priceType}}" name="{{itemInputField.priceName}}" [(ngModel)]="itemInputField.priceValue" [required] = "itemInputField.priceRequired" id="{{itemInputField.priceId}}">
+        <button (click)="removeItemFieldFromInputFields(itemInputField)">(X)</button>
+
+      </div>
+
+      <button type="submit" [disabled]="!myForm.valid">Submit</button>
+      <button (click)="addFieldFromButton($event)">Add Field</button>
+    </form>
+  </body>
+
+</html>

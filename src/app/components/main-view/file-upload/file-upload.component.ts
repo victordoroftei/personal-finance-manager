@@ -14,6 +14,8 @@ export class FileUploadComponent {
 
   formData: FormData = new FormData();
 
+  isLoading: boolean = false;
+
   constructor(private receiptService: ReceiptService, private router: Router) {
 
   }
@@ -31,6 +33,7 @@ export class FileUploadComponent {
   }
 
   uploadFile() {
+    this.isLoading = true;
     this.receiptService.uploadFile(this.formData).subscribe(data => {
       if (data.status == 202) {
         let body: ReceiptModel = data.body;
@@ -40,8 +43,13 @@ export class FileUploadComponent {
           }
         };
 
-        this.router.navigate(["/main-view/main-page"], navigationExtras);
+        this.isLoading = false;
+        this.router.navigate(["/main-view/receipt-form"], navigationExtras);
       }
+    }, error => {
+      console.log(error);
+      alert("ERROR!" + error.message);
+      this.isLoading = false;
     });
   }
 }

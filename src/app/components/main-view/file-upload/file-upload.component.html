@@ -1,13 +1,26 @@
-<input type="file" accept=".jpg,.jpeg,.png,.bmp" class="file-input" (change)="onFileSelected($event)" #fileUpload>
+<!DOCTYPE html>
 
-<div class="file-upload">
+<html lang="en">
 
-  {{fileName || "No image uploaded yet."}}
+    <div class="loading-spinner" *ngIf="isLoading">
 
-  <button mat-mini-fab color="primary" class="upload-btn"
-          (click)="fileUpload.click()">
-    <mat-icon>attach_file</mat-icon>
-  </button>
-</div>
+      <app-loading-spinner-login></app-loading-spinner-login>
+      <p class="logging-text">Processing Image...</p>
 
-<button (click)="uploadFile()">Upload Image</button>
+    </div>
+
+    <input type="file" accept=".jpg,.jpeg,.png,.bmp" class="file-input" (change)="onFileSelected($event)" #fileUpload>
+
+    <div class="file-upload" *ngIf="!isLoading">
+
+      {{fileName || "No image uploaded yet."}}
+
+      <button mat-mini-fab color="primary" class="upload-btn"
+              (click)="fileUpload.click()">
+        <mat-icon>attach_file</mat-icon>
+      </button>
+    </div>
+
+    <button (click)="uploadFile()" *ngIf="!isLoading">Upload Image</button>
+
+</html>

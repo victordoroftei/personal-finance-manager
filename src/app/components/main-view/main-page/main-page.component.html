@@ -1,31 +1,52 @@
 <!DOCTYPE html>
 
-<html>
+<html lang="en">
 
-  <body class="body" class="d-flex flex-column">
+  <header class="mb-5">
+    <img class="logo-img" src="../../../../assets/images/small-logo.png" alt="small-logo.png">
+    <h1>Personal Finance Manager</h1>
+    <p>Your smart solution for <strong>managing your personal finances!</strong></p>
+  </header>
 
-    <form (ngSubmit)="onSubmit()" #myForm="ngForm">
-
-      <div *ngFor="let inputField of inputFields">
-
-        <label for="{{inputField.name}}">{{inputField.label}}</label>
-        <input type="{{inputField.type}}" name="{{inputField.name}}" [(ngModel)]="inputField.value" [required] = "inputField.required" id="{{inputField.id}}">
-        <button (click)="removeFieldFromInputFields(inputField)">(X)</button>
-
+  <div class="card-group">
+    <div class="card text-center rounded-5 px-2">
+      <img class="card-img-top rounded-5" src="../../../../assets/images/receipts6.jpg" alt="Receipts">
+      <div class="card-body">
+        <h5 class="card-title">Receipts</h5>
+        <p class="card-text">You can either insert the receipt data manually, or upload an image and have its data extracted by Optical Character Recognition (OCR).</p>
+        <div class="btn-group-vertical">
+          <a href="#" class="btn btn-primary btn-lg mb-2" role="button">Manual Insertion</a>
+          <a routerLink="../file-upload" class="btn btn-primary btn-lg mt-2 mb-2" role="button">OCR Data Extraction</a>
+          <a href="#" class="btn btn-primary btn-lg mt-2" role="button">Manage Receipts</a>
+        </div>
+        <p class="card-text"><small class="text-muted"></small></p>
       </div>
-
-      <div *ngFor="let itemInputField of itemInputFields">
-
-        <label for="{{itemInputField.nameName}}">{{itemInputField.label}}</label>
-        <input type="{{itemInputField.nameType}}" name="{{itemInputField.nameName}}" [(ngModel)]="itemInputField.nameValue" [required] = "itemInputField.nameRequired" id="{{itemInputField.nameId}}">
-        <input type="{{itemInputField.priceType}}" name="{{itemInputField.priceName}}" [(ngModel)]="itemInputField.priceValue" [required] = "itemInputField.priceRequired" id="{{itemInputField.priceId}}">
-        <button (click)="removeItemFieldFromInputFields(itemInputField)">(X)</button>
-
+    </div>
+    <div class="card text-center rounded-5 px-2">
+      <img class="card-img-top rounded-5" src="../../../../assets/images/invoice1.jpg" alt="Invoices">
+      <div class="card-body">
+        <h5 class="card-title">Invoices</h5>
+        <p class="card-text">Keep track of your invoices and their due dates.</p>
+        <br>
+        <div class="btn-group-vertical">
+          <a href="#" class="btn btn-primary btn-lg mb-2" role="button">Add New Invoice</a>
+          <a href="#" class="btn btn-primary btn-lg mt-2" role="button">Manage Invoices</a>
+        </div>
+        <p class="card-text"><small class="text-muted"></small></p>
       </div>
-
-      <button type="submit" [disabled]="!myForm.valid">Submit</button>
-      <button (click)="addFieldFromButton($event)">Add Field</button>
-    </form>
-  </body>
+    </div>
+    <div class="card text-center rounded-5 px-2">
+      <img class="card-img-top rounded-5" src="../../../../assets/images/altele.jpg" alt="Other Expenses">
+      <div class="card-body">
+        <h5 class="card-title">Other Expenses</h5>
+        <p class="card-text">You can also choose to keep track of other expenses, such as fuel, rent, travels expenses and others.</p>
+        <div class="btn-group-vertical">
+          <a href="#" class="btn btn-primary btn-lg mb-2" role="button">Add New Expense</a>
+          <a href="#" class="btn btn-primary btn-lg mt-2" role="button">Manage Expenses</a>
+        </div>
+        <p class="card-text"><small class="text-muted"></small></p>
+      </div>
+    </div>
+  </div>
 
 </html>
