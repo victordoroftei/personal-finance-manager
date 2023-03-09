@@ -1,3 +1,28 @@
+html {
+  background-color: #ECF2F9;
+}
+
+.card {
+  border-color: #00A1F2;
+  background-color: #F0F0F5;
+}
+
+.card:hover {
+  border-color: #0b5f89;
+  border-width: 5px;
+  transition: all .4s ease;
+}
+
+.btn {
+  background-color: #00A1F2;
+  border-color: #00A1F2;
+}
+
+.btn:hover {
+  background-color: #0b5f89;
+  border-color: #0b5f89;
+}
+
 header {
   align-content: center;
   color: white;

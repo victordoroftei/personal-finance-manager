@@ -2,49 +2,59 @@
 
 <html lang="en">
 
-  <header class="mb-5">
+  <header class="mb-5 p-2">
     <img class="logo-img" src="../../../../assets/images/small-logo.png" alt="small-logo.png">
-    <h1>Personal Finance Manager</h1>
+    <h3>Personal Finance Manager</h3>
     <p>Your smart solution for <strong>managing your personal finances!</strong></p>
   </header>
 
-  <div class="card-group">
-    <div class="card text-center rounded-5 px-2">
-      <img class="card-img-top rounded-5" src="../../../../assets/images/receipts6.jpg" alt="Receipts">
-      <div class="card-body">
-        <h5 class="card-title">Receipts</h5>
-        <p class="card-text">You can either insert the receipt data manually, or upload an image and have its data extracted by Optical Character Recognition (OCR).</p>
-        <div class="btn-group-vertical">
-          <a href="#" class="btn btn-primary btn-lg mb-2" role="button">Manual Insertion</a>
-          <a routerLink="../file-upload" class="btn btn-primary btn-lg mt-2 mb-2" role="button">OCR Data Extraction</a>
-          <a href="#" class="btn btn-primary btn-lg mt-2" role="button">Manage Receipts</a>
+  <div class="row row-cols-1 row-cols-md-3 g-4 mx-4">
+    <div class="col">
+      <div class="card text-center rounded-5 p-3 shadow-lg">
+        <img class="card-img-top rounded-5" src="../../../../assets/images/receipts6.jpg" alt="Receipts">
+        <div class="card-body">
+          <h3 class="card-title"><strong>Receipts</strong></h3>
+          <p class="card-text">You can either insert the receipt data manually, or upload an image and have its data extracted by Optical Character Recognition (OCR).</p>
+          <div class="btn-group-vertical">
+            <a href="#" class="btn btn-primary btn-lg mb-2" role="button">Manual Insertion</a>
+            <a routerLink="../file-upload" class="btn btn-primary btn-lg mt-2 mb-2" role="button">OCR Data Extraction</a>
+            <a href="#" class="btn btn-primary btn-lg mt-2" role="button">Manage Receipts</a>
+          </div>
+          <p class="card-text"><small class="text-muted"></small></p>
         </div>
-        <p class="card-text"><small class="text-muted"></small></p>
       </div>
     </div>
-    <div class="card text-center rounded-5 px-2">
-      <img class="card-img-top rounded-5" src="../../../../assets/images/invoice1.jpg" alt="Invoices">
-      <div class="card-body">
-        <h5 class="card-title">Invoices</h5>
-        <p class="card-text">Keep track of your invoices and their due dates.</p>
-        <br>
-        <div class="btn-group-vertical">
-          <a href="#" class="btn btn-primary btn-lg mb-2" role="button">Add New Invoice</a>
-          <a href="#" class="btn btn-primary btn-lg mt-2" role="button">Manage Invoices</a>
+
+    <div class="col">
+      <div class="card text-center rounded-5 p-3 shadow-lg">
+        <img class="card-img-top rounded-5" src="../../../../assets/images/invoice2.jpg" alt="Invoices">
+        <div class="card-body">
+          <h3 class="card-title"><strong>Invoices</strong></h3>
+          <p class="card-text mt-2">Keep track of your invoices and their due dates.</p>
+          <br>
+          <div class="btn-group-vertical mt-3 mb-5">
+            <a href="#" class="btn btn-primary btn-lg mb-2" role="button">Add New Invoice</a>
+            <a href="#" class="btn btn-primary btn-lg mt-2" role="button">Manage Invoices</a>
+          </div>
+          <br>
+          <p class="card-text"><small class="text-muted"></small></p>
         </div>
-        <p class="card-text"><small class="text-muted"></small></p>
       </div>
     </div>
-    <div class="card text-center rounded-5 px-2">
-      <img class="card-img-top rounded-5" src="../../../../assets/images/altele.jpg" alt="Other Expenses">
-      <div class="card-body">
-        <h5 class="card-title">Other Expenses</h5>
-        <p class="card-text">You can also choose to keep track of other expenses, such as fuel, rent, travels expenses and others.</p>
-        <div class="btn-group-vertical">
-          <a href="#" class="btn btn-primary btn-lg mb-2" role="button">Add New Expense</a>
-          <a href="#" class="btn btn-primary btn-lg mt-2" role="button">Manage Expenses</a>
+
+    <div class="col">
+      <div class="card text-center rounded-5 p-3 shadow-lg">
+        <img class="card-img-top rounded-5" src="../../../../assets/images/altele.jpg" alt="Other Expenses">
+        <div class="card-body">
+          <h3 class="card-title"><strong>Others</strong></h3>
+          <p class="card-text">You can also choose to keep track of other expenses, such as fuel, rent, travels expenses and others.</p>
+          <div class="btn-group-vertical mt-3 mb-5">
+            <a href="#" class="btn btn-primary btn-lg mb-2" role="button">Add New Expense</a>
+            <a href="#" class="btn btn-primary btn-lg mt-2" role="button">Manage Expenses</a>
+          </div>
+          <br>
+          <p class="card-text"><small class="text-muted"></small></p>
         </div>
-        <p class="card-text"><small class="text-muted"></small></p>
       </div>
     </div>
   </div>
