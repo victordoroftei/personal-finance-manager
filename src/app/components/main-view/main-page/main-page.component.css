@@ -10,7 +10,8 @@ html {
 .card:hover {
   border-color: #0b5f89;
   border-width: 5px;
-  transition: all .4s ease;
+  transition: all 0.1s ease;
+  color: #00A1F2;
 }
 
 .btn {

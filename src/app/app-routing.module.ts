@@ -28,16 +28,16 @@ const routes: Routes = [
         pathMatch: 'full'
       },
       {
+        path: "main-page",
+        component: MainPageComponent,
+      },
+      {
         path: "receipt-form",
         component: ReceiptFormComponent
       },
       {
         path: "file-upload",
         component: FileUploadComponent
-      },
-      {
-        path: "main-page",
-        component: MainPageComponent
       }
     ]
   }
@@ -52,4 +52,4 @@ export class AppRoutingModule {
 
 }
 
-export const RoutingComponents = [LoginComponent, MainViewComponent, ReceiptFormComponent];
+export const RoutingComponents = [LoginComponent, MainViewComponent, ReceiptFormComponent, FileUploadComponent, MainPageComponent];

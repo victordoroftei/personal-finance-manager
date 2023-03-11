@@ -15,6 +15,9 @@ import { FileUploadComponent } from './components/main-view/file-upload/file-upl
 import {MatButtonModule} from "@angular/material/button";
 import {MatIconModule} from "@angular/material/icon";
 import { MainPageComponent } from './components/main-view/main-page/main-page.component';
+import { MainNavbarComponent } from './components/main-view/main-navbar/main-navbar.component';
+import {MatMenuModule} from "@angular/material/menu";
+import {BrowserAnimationsModule} from "@angular/platform-browser/animations";
 
 @NgModule({
   declarations: [
@@ -25,7 +28,8 @@ import { MainPageComponent } from './components/main-view/main-page/main-page.co
     ReceiptFormComponent,
     LoadingSpinnerLoginComponent,
     FileUploadComponent,
-    MainPageComponent
+    MainPageComponent,
+    MainNavbarComponent
   ],
   imports: [
     BrowserModule,
@@ -35,7 +39,9 @@ import { MainPageComponent } from './components/main-view/main-page/main-page.co
     MatProgressSpinnerModule,
     FormsModule,
     MatButtonModule,
-    MatIconModule
+    MatIconModule,
+    MatMenuModule,
+    BrowserAnimationsModule
   ],
   providers: [LoginService],
   bootstrap: [AppComponent]

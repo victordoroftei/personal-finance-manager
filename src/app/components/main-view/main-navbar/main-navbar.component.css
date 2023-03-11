@@ -1,0 +1,18 @@
+.with-icon {
+  display: flex;
+  align-items: center;
+}
+
+.navbar {
+  background-color: #0b5f89;
+}
+
+.btn {
+  background-color: #0b5f89;
+  border-color: #0b5f89;
+  font-size: 1.25rem;
+}
+
+.btn:hover {
+  background-color: #00A1F2;
+}

@@ -1,0 +1,41 @@
+<nav class="navbar navbar-dark">
+  <div class="container-fluid">
+    <a class="navbar-brand" routerLink="/main-view/main-page">
+      <img src="../../../../assets/images/small-logo.png" alt="small-logo.png" width="80" height="80" style=""
+           class="d-inline-block align-text-center">
+      Personal Finance Manager
+    </a>
+    <div class="d-flex gap-2">
+      <button type="button" class="btn btn-dark" routerLink="/main-view/main-page">
+        <div class="gap-2 with-icon">
+          <mat-icon fontIcon="home"></mat-icon>
+          Home
+        </div>
+      </button>
+      <button type="button" class="btn btn-dark" routerLink="/main-view/recycling-progress">
+        <div class="gap-2 with-icon">
+          <mat-icon fontIcon="pie_chart"></mat-icon>
+          Spending Statistics
+        </div>
+      </button>
+      <button type="button" class="btn btn-dark" routerLink="/main-view/national-statistics">
+        <div class="gap-2 with-icon">
+          <mat-icon fontIcon="calendar_today"></mat-icon>
+          Due Payments
+        </div>
+      </button>
+      <button type="button" class="btn btn-dark" routerLink="/main-view/my-account">
+        <div class="gap-2 with-icon">
+          <mat-icon fontIcon="person"></mat-icon>
+          My Account
+        </div>
+      </button>
+      <button type="button" class="btn btn-dark" (click)="logout()">
+        <div class="gap-2 with-icon">
+          <mat-icon fontIcon="logout"></mat-icon>
+          Logout
+        </div>
+      </button>
+    </div>
+  </div>
+</nav>
