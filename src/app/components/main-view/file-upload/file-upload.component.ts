@@ -1,7 +1,8 @@
-import { Component } from '@angular/core';
+import {Component, Input} from '@angular/core';
 import {ReceiptService} from "../../../services/receipt-service";
 import {NavigationExtras, Router} from "@angular/router";
 import {ReceiptModel} from "../../../models/receipt.model";
+import {Subscription} from "rxjs";
 
 @Component({
   selector: 'app-file-upload',

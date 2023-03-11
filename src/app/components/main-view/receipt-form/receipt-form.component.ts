@@ -3,6 +3,7 @@ import {ReceiptService} from "../../../services/receipt-service";
 import {ActivatedRoute, Router} from "@angular/router";
 import {Location} from "@angular/common";
 import {ReceiptModel} from "../../../models/receipt.model";
+import {FormControl} from "@angular/forms";
 
 @Component({
   selector: 'app-receipt-form',
@@ -14,6 +15,7 @@ export class ReceiptFormComponent {
 
   inputFields: InputField[];
   itemInputFields: ItemInputField[];
+  calculatedTotalField: InputField;
 
   token!: string | null;
 
@@ -24,6 +26,8 @@ export class ReceiptFormComponent {
   receivedData: any;
 
   imagePath: string;
+
+  myControl: FormControl;
 
   constructor(private receiptService: ReceiptService, route: ActivatedRoute, router: Router, private location: Location) {
     this.receiptService = receiptService;
@@ -41,11 +45,27 @@ export class ReceiptFormComponent {
         label: `label${i}`,
         value: `value${i}`,
         type: 'text',
-        required: true
+        required: true,
+        disabled: false
       };
 
       this.inputFields.push(inputField);
     }
+
+    this.calculatedTotalField = {
+      name: 'detected-total',
+      id: 'detected-total',
+      label: 'Detected Total:',
+      type: 'text',
+      value: '0.0',
+      required: false,
+      disabled: false
+    };
+
+    this.myControl = new FormControl();
+    this.myControl.valueChanges.subscribe(value => {
+      console.log("Input value changed: ", value);
+    })
   }
 
   onSubmit() {
@@ -118,17 +138,18 @@ export class ReceiptFormComponent {
     event.preventDefault();
 
     let newItemInputField: ItemInputField = {
-      label: `Item ${this.itemInputFields.length + 1}:`,
-      nameName: `name-item${this.itemInputFields.length + 1}`,
-      nameType: 'text',
-      nameId: `name-item${this.itemInputFields.length + 1}`,
-      nameValue: '',
-      nameRequired: true,
-      priceName: `price-item${this.itemInputFields.length + 1}`,
-      priceType: 'text',
-      priceId: `price-item${this.itemInputFields.length + 1}`,
-      priceValue: 0,
-      priceRequired: true
+        label: `Item ${this.itemInputFields.length + 1}:`,
+        nameName: `name-item${this.itemInputFields.length + 1}`,
+        nameType: 'text',
+        nameId: `name-item${this.itemInputFields.length + 1}`,
+        nameValue: '',
+        nameRequired: true,
+        priceName: `price-item${this.itemInputFields.length + 1}`,
+        priceType: 'text',
+        priceId: `price-item${this.itemInputFields.length + 1}`,
+        priceValue: 0,
+        priceRequired: true,
+        index: this.itemInputFields.length + 1
     };
 
     this.itemInputFields.push(newItemInputField);
@@ -169,7 +190,8 @@ export class ReceiptFormComponent {
       label: 'Retailer:',
       type: 'text',
       value: retailerName,
-      required: false
+      required: false,
+      disabled: false
     };
 
     this.inputFields.push(inputField);
@@ -182,23 +204,23 @@ export class ReceiptFormComponent {
       label: 'Receipt Date:',
       type: 'datetime-local',
       value: receiptDate.replace('T', ' '),
-      required: false
+      required: false,
+      disabled: false
     };
 
     this.inputFields.push(inputField);
   }
 
   addCalculatedTotalField(calculatedTotal: number): void {
-    let inputField: InputField = {
+    this.calculatedTotalField = {
       name: 'calculated-total',
       id: 'calculated-total',
       label: 'Calculated Total:',
       type: 'text',
       value: calculatedTotal.toString(),
-      required: false
+      required: false,
+      disabled: true
     };
-
-    this.inputFields.push(inputField);
   }
 
   addDetectedTotalField(detectedTotal: number): void {
@@ -208,7 +230,8 @@ export class ReceiptFormComponent {
       label: 'Detected Total:',
       type: 'text',
       value: detectedTotal.toString(),
-      required: true
+      required: true,
+      disabled: false
     };
 
     this.inputFields.push(inputField);
@@ -226,7 +249,8 @@ export class ReceiptFormComponent {
       priceId: `price-item${index + 1}`,
       priceType: 'text',
       priceValue: itemPrice,
-      priceRequired: true
+      priceRequired: true,
+      index: index
     };
 
     this.itemInputFields.push(itemInputField);
@@ -258,6 +282,16 @@ export class ReceiptFormComponent {
           this.addItemFields(itemNames[i], itemPrices[i], i)
         }
   }
+
+  recalculateTotal() {
+    let sum = Number();
+    for (let i = 0; i < this.itemInputFields.length; i++) {
+      sum = sum + Number(this.itemInputFields[i].priceValue);
+      sum = Number((Math.round(sum * 100) / 100).toFixed(2));
+    }
+
+    this.calculatedTotalField.value = sum.toString();
+  }
 }
 
 type InputField = {
@@ -267,6 +301,7 @@ type InputField = {
   value: string;
   required: boolean;
   id: string;
+  disabled: boolean;
 }
 
 type ItemInputField = {
@@ -281,6 +316,7 @@ type ItemInputField = {
   priceRequired: boolean;
   nameId: string;
   priceId: string;
+  index: number;
 }
 
 type ItemSimple = {

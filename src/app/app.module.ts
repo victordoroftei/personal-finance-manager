@@ -18,6 +18,9 @@ import { MainPageComponent } from './components/main-view/main-page/main-page.co
 import { MainNavbarComponent } from './components/main-view/main-navbar/main-navbar.component';
 import {MatMenuModule} from "@angular/material/menu";
 import {BrowserAnimationsModule} from "@angular/platform-browser/animations";
+import {MatProgressBarModule} from "@angular/material/progress-bar";
+import {MatFormFieldModule} from "@angular/material/form-field";
+import {MatInputModule} from "@angular/material/input";
 
 @NgModule({
   declarations: [
@@ -41,7 +44,10 @@ import {BrowserAnimationsModule} from "@angular/platform-browser/animations";
     MatButtonModule,
     MatIconModule,
     MatMenuModule,
-    BrowserAnimationsModule
+    BrowserAnimationsModule,
+    MatProgressBarModule,
+    MatFormFieldModule,
+    MatInputModule
   ],
   providers: [LoginService],
   bootstrap: [AppComponent]

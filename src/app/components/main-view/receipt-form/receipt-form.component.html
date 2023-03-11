@@ -4,27 +4,47 @@
 
   <body class="body" class="d-flex flex-column">
 
-    <form (ngSubmit)="onSubmit()" #myForm="ngForm">
+    <form class="mx-3 mt-3" (ngSubmit)="onSubmit()" #myForm="ngForm">
 
-      <div *ngFor="let inputField of inputFields">
+      <div class="form-group row" *ngFor="let inputField of inputFields">
 
-        <label for="{{inputField.name}}">{{inputField.label}}</label>
-        <input type="{{inputField.type}}" name="{{inputField.name}}" [(ngModel)]="inputField.value" [required] = "inputField.required" id="{{inputField.id}}">
-        <button (click)="removeFieldFromInputFields(inputField)">(X)</button>
-
-      </div>
-
-      <div *ngFor="let itemInputField of itemInputFields">
-
-        <label for="{{itemInputField.nameName}}">{{itemInputField.label}}</label>
-        <input type="{{itemInputField.nameType}}" name="{{itemInputField.nameName}}" [(ngModel)]="itemInputField.nameValue" [required] = "itemInputField.nameRequired" id="{{itemInputField.nameId}}">
-        <input type="{{itemInputField.priceType}}" name="{{itemInputField.priceName}}" [(ngModel)]="itemInputField.priceValue" [required] = "itemInputField.priceRequired" id="{{itemInputField.priceId}}">
-        <button (click)="removeItemFieldFromInputFields(itemInputField)">(X)</button>
+        <label class="col-sm-2 col-form-label" for="{{inputField.name}}">{{inputField.label}}</label>
+        <div class="col-sm-4">
+          <input class="form-control" type="{{inputField.type}}" name="{{inputField.name}}" [(ngModel)]="inputField.value" [required]="inputField.required" id="{{inputField.id}}" [disabled]="inputField.disabled">
+        </div>
 
       </div>
 
-      <button type="submit" [disabled]="!myForm.valid">Submit</button>
-      <button (click)="addFieldFromButton($event)">Add Field</button>
+      <div class="form-group row">
+
+        <label class="col-sm-2 col-form-label" for="{{calculatedTotalField.name}}">{{calculatedTotalField.label}}</label>
+
+        <div class="col-sm-4">
+          <input class="form-control" type="text" name="{{calculatedTotalField.type}}" [(ngModel)]="calculatedTotalField.value" [required]="calculatedTotalField.required" id="{{calculatedTotalField.required}}" [disabled]="calculatedTotalField.disabled">
+        </div>
+
+      </div>
+
+      <div class="form-group row" *ngFor="let itemInputField of itemInputFields">
+
+        <label class="col-sm-2 col-form-label" for="{{itemInputField.nameName}}">{{itemInputField.label}}</label>
+
+        <div class="col-sm-3">
+          <input class="form-control" type="{{itemInputField.nameType}}" name="{{itemInputField.nameName}}" [(ngModel)]="itemInputField.nameValue" [required] = "itemInputField.nameRequired" id="{{itemInputField.nameId}}">
+        </div>
+
+        <div class="col-sm-1">
+          <input class="form-control" type="{{itemInputField.priceType}}" name="{{itemInputField.priceName}}" [(ngModel)]="itemInputField.priceValue" [required] = "itemInputField.priceRequired" id="{{itemInputField.priceId}}" (change)="recalculateTotal()">
+        </div>
+
+        <div class="col-sm-1">
+          <button class="form-control btn btn-primary" (click)="removeItemFieldFromInputFields(itemInputField)">(X)</button>
+        </div>
+
+      </div>
+
+      <button class="btn btn-primary mx-2 mb-4" [disabled]="!myForm.valid" type="submit">Submit</button>
+      <button class="btn btn-primary mx-2 mb-4" (click)="addFieldFromButton($event)">Add Field</button>
     </form>
   </body>
 
