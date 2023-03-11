@@ -69,7 +69,7 @@ export class ReceiptFormComponent {
   }
 
   onSubmit() {
-    let calculatedTotal = this.getValueOfInputFieldWithGivenId("calculated-total");
+    let calculatedTotal = this.calculatedTotalField.value;
     let actualCalculatedTotal = null;
     if (calculatedTotal !== null) {
       actualCalculatedTotal = +calculatedTotal;
