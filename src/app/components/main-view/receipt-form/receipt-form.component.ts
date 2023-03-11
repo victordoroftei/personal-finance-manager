@@ -134,7 +134,7 @@ export class ReceiptFormComponent {
     return item;
   }
 
-  addFieldFromButton(event: any): void {
+  addItemFieldFromButton(event: any): void {
     event.preventDefault();
 
     let newItemInputField: ItemInputField = {
@@ -181,6 +181,27 @@ export class ReceiptFormComponent {
     }
 
     this.itemInputFields.splice(inputFieldIndex, 1);
+
+    for (let i = 0; i < this.itemInputFields.length; i++) {
+      let itemInputField: ItemInputField = {
+        label: `Item ${i + 1}:`,
+        nameName: `name-item${i + 1}`,
+        nameId: `name-item${i + 1}`,
+        nameType: 'text',
+        nameValue: this.itemInputFields[i].nameValue,
+        nameRequired: true,
+        priceName: `price-item${i + 1}`,
+        priceId: `price-item${i + 1}`,
+        priceType: 'text',
+        priceValue: this.itemInputFields[i].priceValue,
+        priceRequired: true,
+        index: i
+      };
+
+      this.itemInputFields[i] = itemInputField;
+    }
+
+    this.recalculateTotal();
   }
 
   addRetailerField(retailerName: string): void {
