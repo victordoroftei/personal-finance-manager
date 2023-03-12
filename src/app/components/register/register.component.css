@@ -1,0 +1,72 @@
+html, body {
+  height: 100%;
+}
+
+header {
+  align-content: center;
+  color: white;
+  background: rgba(0, 0, 0, .60);
+}
+
+header img {
+  float: left;
+  width: 100px;
+  height: 100px;
+}
+
+.form-login, .form-register, .form-update-account {
+  background: rgba(0, 0, 0, .60);
+  max-width: 450px;
+  margin: auto;
+  width: 100%;
+  padding: 20px;
+  border-radius: 10px;
+}
+
+.form-register, .form-update-account {
+  margin-top: 3%;
+}
+
+.error-message {
+  color: red;
+}
+
+#login-button, #signup-button, #update-account-button {
+  background-color: #00a1f2;
+  border-color: #00a1f2;
+}
+
+#login-button:hover, #signup-button:hover, #update-account-button:hover {
+  background-color: #0b5f89;
+  border-color: #0b5f89;
+}
+
+#back-button {
+  font-size: 1.1rem;
+}
+
+.loading-spinner {
+  text-align: center;
+  padding-top: 14%;
+}
+
+.register-text {
+  font-weight: bold;
+}
+
+@media all and (min-width: 992px) {
+  .navbar .nav-item .dropdown-menu {
+    display: none;
+  }
+
+  .navbar .nav-item:hover .nav-link {
+  }
+
+  .navbar .nav-item:hover .dropdown-menu {
+    display: block;
+  }
+
+  .navbar .nav-item .dropdown-menu {
+    margin-top: 0;
+  }
+}

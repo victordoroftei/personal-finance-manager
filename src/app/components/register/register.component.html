@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+
+<html lang="en">
+
+  <head>
+    <title>Sign up!</title>
+  </head>
+
+  <body class="d-flex flex-column">
+
+    <header>
+      <img src="assets/images/small-logo.png" alt="small-logo.png">
+      <h1>RecycleIT</h1>
+      <p>Create an account and make your way towards <strong>helping the planet!</strong></p>
+    </header>
+
+    <div class="loading-spinner" *ngIf="isLoading">
+      <app-loading-spinner-login></app-loading-spinner-login>
+      <p class="register-text">Register...</p>
+    </div>
+
+    <form [formGroup]="registerForm" (submit)="onSubmit(registerForm)" action="" method="post"
+          class="form-register text-center shadow-lg" *ngIf="!isLoading">
+      <h3 style="color: white">User registration</h3>
+      <div class="form-floating mb-3">
+        <input type="text" class="form-control" id="first-name" name="input-first-name"
+               placeholder="First Name" formControlName="firstName">
+        <small class="error-message"
+               *ngIf="showFirstNameError">
+          Invalid first name!
+        </small>
+        <hr style="color: white">
+        <label for="first-name" class="form-label">First Name</label>
+      </div>
+      <div class="form-floating mb-3">
+        <input type="text" class="form-control" id="last-name" name="input-last-name"
+               placeholder="Last Name" formControlName="lastName">
+        <small class="error-message"
+               *ngIf="showLastNameError">
+          Invalid last name!
+        </small>
+        <label for="last-name" class="form-label">Last Name</label>
+        <hr style="color: white">
+      </div>
+      <div class="form-floating mb-3">
+        <input type="email" class="form-control" id="input-email" name="input-email"
+               placeholder="Enter your email address..." formControlName="email">
+        <label for="input-email" class="form-label">Email address</label>
+      </div>
+      <small class="error-message"
+             *ngIf="showEmailAddressError">
+        Invalid email address!
+      </small>
+      <small class="error-message"
+             *ngIf="showUsedEmailAddressError">
+        Email address already in use!
+      </small>
+      <hr style="color: white">
+      <div class="form-floating mb-3">
+        <input type="password" class="form-control" id="input-password" name="input-password"
+               placeholder="Enter your password..." formControlName="password">
+        <label for="input-password">Password</label>
+      </div>
+      <small class="error-message"
+             *ngIf="showPasswordError">
+        Invalid password!<br>
+        The length of the password must be at least 8 characters!
+      </small>
+      <hr style="color: white">
+      <div class="form-floating mb-3">
+        <input type="password" class="form-control mb-3" id="input-repeat-password" name="input-repeat-password"
+               placeholder="Confirm your password..." formControlName="confirmPassword">
+        <label for="input-repeat-password">Confirm password</label>
+      </div>
+      <small class="error-message"
+             *ngIf="showPasswordsUnmatch">
+        Passwords do not match!
+      </small>
+      <hr style="color: white">
+      <button type="submit" class="btn btn-primary btn-lg w-100 mb-2" id="signup-button">Sign Up</button>
+      <a class="btn btn-secondary w-100 mb-2" role="button" id="back-button" (click)="login()">Back</a>
+    </form>
+
+  </body>
+
+</html>
