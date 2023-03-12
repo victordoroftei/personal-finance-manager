@@ -4,11 +4,14 @@
 
   <body class="body" class="d-flex flex-column">
 
-    <form class="mx-3 mt-3" (ngSubmit)="onSubmit()" #myForm="ngForm">
+    <form class="mx-3 mt-3 d-flex flex-column" (ngSubmit)="onSubmit()" #myForm="ngForm">
 
       <div class="form-group row" *ngFor="let inputField of inputFields">
 
-        <label class="col-sm-2 col-form-label" for="{{inputField.name}}">{{inputField.label}}</label>
+        <!-- This is here to place the table horizontally align the table in the middle of the page -->
+        <div class="col-sm-2"></div>
+
+        <label class="col-sm-2 col-form-label text-end" for="{{inputField.name}}">{{inputField.label}}</label>
         <div class="col-sm-4">
           <input class="form-control" type="{{inputField.type}}" name="{{inputField.name}}" [(ngModel)]="inputField.value" [required]="inputField.required" id="{{inputField.id}}" [disabled]="inputField.disabled">
         </div>
@@ -17,7 +20,10 @@
 
       <div class="form-group row">
 
-        <label class="col-sm-2 col-form-label" for="{{calculatedTotalField.name}}">{{calculatedTotalField.label}}</label>
+        <!-- This is here to place the table horizontally align the table in the middle of the page -->
+        <div class="col-sm-2"></div>
+
+        <label class="col-sm-2 col-form-label text-end" for="{{calculatedTotalField.name}}">{{calculatedTotalField.label}}</label>
 
         <div class="col-sm-4">
           <input class="form-control" type="text" name="{{calculatedTotalField.type}}" [(ngModel)]="calculatedTotalField.value" [required]="calculatedTotalField.required" id="{{calculatedTotalField.required}}" [disabled]="calculatedTotalField.disabled">
@@ -27,7 +33,10 @@
 
       <div class="form-group row" *ngFor="let itemInputField of itemInputFields">
 
-        <label class="col-sm-2 col-form-label" for="{{itemInputField.nameName}}">{{itemInputField.label}}</label>
+        <!-- This is here to place the table horizontally align the table in the middle of the page -->
+        <div class="col-sm-2"></div>
+
+        <label class="col-sm-2 col-form-label text-end" for="{{itemInputField.nameName}}">{{itemInputField.label}}</label>
 
         <div class="col-sm-3">
           <input class="form-control" type="{{itemInputField.nameType}}" name="{{itemInputField.nameName}}" [(ngModel)]="itemInputField.nameValue" [required] = "itemInputField.nameRequired" id="{{itemInputField.nameId}}">
@@ -43,9 +52,25 @@
 
       </div>
 
-      <button class="btn btn-primary mx-2 mb-4" [disabled]="!myForm.valid" type="submit">Submit</button>
-      <button class="btn btn-primary mx-2 mb-4" (click)="addItemFieldFromButton($event)">Add Field</button>
+      <div class="form-group row">
+
+        <!-- This is here to place the table horizontally align the table in the middle of the page -->
+        <div class="col-sm-2"></div>
+
+        <div class="col-sm-2"></div>
+
+        <div class="col-sm-2">
+          <button class="form-control btn btn-primary mx-2 mb-4" [disabled]="!myForm.valid" type="submit">Submit</button>
+        </div>
+
+        <div class="col-sm-2">
+          <button class="form-control btn btn-primary mx-2 mb-4" (click)="addItemFieldFromButton($event)">Add Field</button>
+        </div>
+
+      </div>
+
     </form>
+
   </body>
 
 </html>

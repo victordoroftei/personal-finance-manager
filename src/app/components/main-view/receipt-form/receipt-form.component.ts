@@ -35,31 +35,17 @@ export class ReceiptFormComponent {
     this.router = router;
     this.imagePath = "";
 
-    let noFields = 10;
     this.inputFields = [];
     this.itemInputFields = [];
-    for (let i = 0; i < noFields; i++) {
-      let inputField: InputField = {
-        name: `name${i}`,
-        id: `id${i}`,
-        label: `label${i}`,
-        value: `value${i}`,
-        type: 'text',
-        required: true,
-        disabled: false
-      };
-
-      this.inputFields.push(inputField);
-    }
 
     this.calculatedTotalField = {
-      name: 'detected-total',
-      id: 'detected-total',
-      label: 'Detected Total:',
+      name: 'calculated-total',
+      id: 'calculated-total',
+      label: 'Calculated Total:',
       type: 'text',
       value: '0.0',
       required: false,
-      disabled: false
+      disabled: true
     };
 
     this.myControl = new FormControl();
@@ -109,8 +95,19 @@ export class ReceiptFormComponent {
     // @ts-ignore
     this.receivedData = this.location.getState().body;
     console.log(this.receivedData);
-    this.imagePath = this.receivedData.imagePath;
-    this.populateFields();
+
+    if (this.receivedData) {
+      this.imagePath = this.receivedData.imagePath;
+      this.populateFields();
+    } else {
+      this.addFieldsWithoutFileUploaded();
+    }
+  }
+
+  addFieldsWithoutFileUploaded(): void {
+    this.addRetailerField("");
+    this.addReceiptDateField("");
+    this.addItemField("", 0, 0);
   }
 
   getValueOfInputFieldWithGivenId(id: string) {
@@ -258,7 +255,7 @@ export class ReceiptFormComponent {
     this.inputFields.push(inputField);
   }
 
-  addItemFields(itemName: string, itemPrice: number, index: number): void {
+  addItemField(itemName: string, itemPrice: number, index: number): void {
     let itemInputField: ItemInputField = {
       label: `Item ${index + 1}:`,
       nameName: `name-item${index + 1}`,
@@ -292,15 +289,17 @@ export class ReceiptFormComponent {
           this.addCalculatedTotalField(this.receivedData.calculatedTotal);
         }
 
+        /*
         if (this.receivedData.detectedTotal != null) {
           this.addDetectedTotalField(this.receivedData.detectedTotal);
         }
+         */
 
         let itemNames: Array<string> = this.receivedData.itemNames;
         let itemPrices: Array<number> = this.receivedData.itemPrices;
 
         for (let i = 0; i < itemNames.length; i++) {
-          this.addItemFields(itemNames[i], itemPrices[i], i)
+          this.addItemField(itemNames[i], itemPrices[i], i)
         }
   }
 
