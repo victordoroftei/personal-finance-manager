@@ -21,6 +21,9 @@ import {BrowserAnimationsModule} from "@angular/platform-browser/animations";
 import {MatProgressBarModule} from "@angular/material/progress-bar";
 import {MatFormFieldModule} from "@angular/material/form-field";
 import {MatInputModule} from "@angular/material/input";
+import { RegisterComponent } from './components/register/register.component';
+import { RegisterDialogComponent } from './components/register/register-dialog/register-dialog.component';
+import {MatDialogModule} from "@angular/material/dialog";
 
 @NgModule({
   declarations: [
@@ -32,7 +35,9 @@ import {MatInputModule} from "@angular/material/input";
     LoadingSpinnerLoginComponent,
     FileUploadComponent,
     MainPageComponent,
-    MainNavbarComponent
+    MainNavbarComponent,
+    RegisterComponent,
+    RegisterDialogComponent,
   ],
   imports: [
     BrowserModule,
@@ -47,7 +52,8 @@ import {MatInputModule} from "@angular/material/input";
     BrowserAnimationsModule,
     MatProgressBarModule,
     MatFormFieldModule,
-    MatInputModule
+    MatInputModule,
+    MatDialogModule
   ],
   providers: [LoginService],
   bootstrap: [AppComponent]

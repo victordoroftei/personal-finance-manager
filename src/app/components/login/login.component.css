@@ -41,6 +41,10 @@ header img {
   border-color: #0b5f89;
 }
 
+#register-button {
+  font-size: 1.1rem;
+}
+
 .loading-spinner {
   text-align: center;
   padding-top: 14%;

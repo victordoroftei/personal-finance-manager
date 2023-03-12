@@ -17,12 +17,9 @@ export class AuthGuard implements CanActivate {
       const isAuth = !!user;
 
       if (isAuth) {
-        const payload = jwtDecode(user.token!) as JWTPayload;
-
-        if (payload.scope === "ROLE_ADMIN") {
-          return true;
-        }
+        return true;
       }
+
       return this.router.createUrlTree(["/login"]);
     }));
   }

@@ -6,12 +6,17 @@ import {MainViewComponent} from "./components/main-view/main-view.component";
 import {ReceiptFormComponent} from "./components/main-view/receipt-form/receipt-form.component";
 import {FileUploadComponent} from "./components/main-view/file-upload/file-upload.component";
 import {MainPageComponent} from "./components/main-view/main-page/main-page.component";
+import {RegisterComponent} from "./components/register/register.component";
 
 const routes: Routes = [
   {
     path: '',
     redirectTo: 'main-view/main-page',
     pathMatch: 'full'
+  },
+  {
+    path: 'register',
+    component: RegisterComponent
   },
   {
     path: 'login',
