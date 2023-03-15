@@ -4,6 +4,8 @@ import {ActivatedRoute, Router} from "@angular/router";
 import {Location} from "@angular/common";
 import {ReceiptModel} from "../../../models/receipt.model";
 import {FormControl} from "@angular/forms";
+import {MatDialog} from "@angular/material/dialog";
+import {ReceiptFormDialogComponent} from "./receipt-form-dialog/receipt-form-dialog.component";
 
 @Component({
   selector: 'app-receipt-form',
@@ -29,11 +31,17 @@ export class ReceiptFormComponent {
 
   myControl: FormControl;
 
-  constructor(private receiptService: ReceiptService, route: ActivatedRoute, router: Router, private location: Location) {
+  fullImagePath: string;
+
+  mySrc: any;
+
+  constructor(private receiptService: ReceiptService, route: ActivatedRoute, router: Router, private location: Location, private dialog: MatDialog) {
     this.receiptService = receiptService;
     this.route = route;
     this.router = router;
     this.imagePath = "";
+    this.fullImagePath = "";
+    this.mySrc = null;
 
     this.inputFields = [];
     this.itemInputFields = [];
@@ -51,7 +59,7 @@ export class ReceiptFormComponent {
     this.myControl = new FormControl();
     this.myControl.valueChanges.subscribe(value => {
       console.log("Input value changed: ", value);
-    })
+    });
   }
 
   onSubmit() {
@@ -68,7 +76,11 @@ export class ReceiptFormComponent {
     }
 
     let retailer = this.getValueOfInputFieldWithGivenId("retailer");
-    let receiptDate = this.getValueOfInputFieldWithGivenId("receiptDate");
+    let receiptDate = this.getValueOfInputFieldWithGivenId("receipt-date");
+    console.log(receiptDate);
+    // @ts-ignore
+    receiptDate = receiptDate?.replace(" ", "T");
+    console.log(receiptDate);
 
     let itemNames: Array<string> = [];
     let itemPrices: Array<number> = [];
@@ -84,10 +96,28 @@ export class ReceiptFormComponent {
     console.log(receipt);
     this.receiptService.addReceipt(receipt).subscribe(data => {
       if (data.status == 201) {
-        alert("DA");
+        this.openDialog(false);
       } else {
-        alert("NU");
+        this.openDialog(true);
       }
+    });
+  }
+
+  openDialog(errorOccurred: boolean): void {
+    let string;
+
+    if (errorOccurred) {
+      string = "An unexpected error has occurred while trying to save your receipt!";
+    } else {
+      string = "Your receipt has been successfully added!";
+    }
+
+    const dialogRef = this.dialog.open(ReceiptFormDialogComponent, {
+      data: {message: string, errorOccurred: errorOccurred}
+    });
+
+    dialogRef.afterClosed().subscribe(result => {
+      console.log("Dialog closed");
     });
   }
 

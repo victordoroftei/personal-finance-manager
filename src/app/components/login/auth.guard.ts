@@ -2,8 +2,6 @@ import {Injectable} from "@angular/core";
 import {ActivatedRouteSnapshot, CanActivate, Router, RouterStateSnapshot, UrlTree} from "@angular/router";
 import {LoginService} from "../../services/login-service";
 import {map, Observable, take} from "rxjs";
-import jwtDecode from "jwt-decode";
-import {JWTPayload} from "./login.component";
 
 @Injectable({providedIn: 'root'})
 export class AuthGuard implements CanActivate {

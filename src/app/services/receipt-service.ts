@@ -51,4 +51,16 @@ export class ReceiptService {
       observe: "response" as "body"
     });
   }
+
+  getImage(imagePath: string) {
+    let url = this.receiptsUrl + `/image/${imagePath}`
+    return this.httpClient.get<HttpResponse<any>>(url, {
+      responseType: "blob" as "json",
+      headers: {
+        "Authorization": "Bearer " + this.token,
+        "Content-Type": "application/json"
+      },
+      observe: "response" as "body"
+    });
+  }
 }

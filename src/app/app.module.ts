@@ -24,6 +24,7 @@ import {MatInputModule} from "@angular/material/input";
 import { RegisterComponent } from './components/register/register.component';
 import { RegisterDialogComponent } from './components/register/register-dialog/register-dialog.component';
 import {MatDialogModule} from "@angular/material/dialog";
+import { ReceiptFormDialogComponent } from './components/main-view/receipt-form/receipt-form-dialog/receipt-form-dialog.component';
 
 @NgModule({
   declarations: [
@@ -38,6 +39,7 @@ import {MatDialogModule} from "@angular/material/dialog";
     MainNavbarComponent,
     RegisterComponent,
     RegisterDialogComponent,
+    ReceiptFormDialogComponent,
   ],
   imports: [
     BrowserModule,
