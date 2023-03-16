@@ -4,14 +4,14 @@
 
   <body class="body d-flex flex-column">
 
-    <form class="mx-3 mt-3 d-flex flex-column" (ngSubmit)="onSubmit()" #myForm="ngForm">
+    <form class="d-flex flex-column receipt-form" (ngSubmit)="onSubmit()" #myForm="ngForm">
 
       <div class="form-group row" *ngFor="let inputField of inputFields">
 
         <!-- This is here to place the table horizontally align the table in the middle of the page -->
         <div class="col-sm-2"></div>
 
-        <label class="col-sm-2 col-form-label text-end" for="{{inputField.name}}">{{inputField.label}}</label>
+        <label class="col-sm-2 col-form-label text-end fw-bold" for="{{inputField.name}}">{{inputField.label}}</label>
         <div class="col-sm-4">
           <input class="form-control" type="{{inputField.type}}" name="{{inputField.name}}" [(ngModel)]="inputField.value" [required]="inputField.required" id="{{inputField.id}}" [disabled]="inputField.disabled">
         </div>
@@ -23,7 +23,7 @@
         <!-- This is here to place the table horizontally align the table in the middle of the page -->
         <div class="col-sm-2"></div>
 
-        <label class="col-sm-2 col-form-label text-end" for="{{calculatedTotalField.name}}">{{calculatedTotalField.label}}</label>
+        <label class="col-sm-2 col-form-label text-end fw-bold" for="{{calculatedTotalField.name}}">{{calculatedTotalField.label}}</label>
 
         <div class="col-sm-4">
           <input class="form-control" type="text" name="{{calculatedTotalField.type}}" [(ngModel)]="calculatedTotalField.value" [required]="calculatedTotalField.required" id="{{calculatedTotalField.required}}" [disabled]="calculatedTotalField.disabled">
@@ -36,7 +36,7 @@
         <!-- This is here to place the table horizontally align the table in the middle of the page -->
         <div class="col-sm-2"></div>
 
-        <label class="col-sm-2 col-form-label text-end" for="{{itemInputField.nameName}}">{{itemInputField.label}}</label>
+        <label class="col-sm-2 col-form-label text-end fw-bold" for="{{itemInputField.nameName}}">{{itemInputField.label}}</label>
 
         <div class="col-sm-3">
           <input class="form-control" type="{{itemInputField.nameType}}" name="{{itemInputField.nameName}}" [(ngModel)]="itemInputField.nameValue" [required] = "itemInputField.nameRequired" id="{{itemInputField.nameId}}">
@@ -47,7 +47,9 @@
         </div>
 
         <div class="col-sm-1">
-          <button class="form-control btn btn-primary" (click)="removeItemFieldFromInputFields(itemInputField)">(X)</button>
+          <button mat-mini-fab class="form-control btn btn-danger btn-remove-field shadow" type="button" (click)="removeItemFieldFromInputFields(itemInputField)">
+            <mat-icon>cancel</mat-icon>
+          </button>
         </div>
 
       </div>
@@ -60,11 +62,11 @@
         <div class="col-sm-2"></div>
 
         <div class="col-sm-2">
-          <button class="form-control btn btn-primary mx-2 mb-4" [disabled]="!myForm.valid" type="submit">Submit</button>
+          <button class="form-control btn btn-primary mx-2 mb-4 shadow-lg fw-bold" [disabled]="!myForm.valid" type="submit">Add Receipt</button>
         </div>
 
         <div class="col-sm-2">
-          <button class="form-control btn btn-primary mx-2 mb-4" (click)="addItemFieldFromButton($event)">Add Field</button>
+          <button class="form-control btn btn-primary mx-2 mb-4 shadow-lg fw-bold" (click)="addItemFieldFromButton($event)">Add Item Field</button>
         </div>
 
       </div>

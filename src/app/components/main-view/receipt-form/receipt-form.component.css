@@ -2,3 +2,26 @@
   margin-bottom: 20px;
   margin-top: 20px;
 }
+
+.btn {
+  background-color: #00A1F2;
+  border-color: #00A1F2;
+}
+
+.btn:hover {
+  background-color: #0b5f89;
+  border-color: #0b5f89;
+}
+
+.btn-remove-field {
+  background-color: red;
+  color: white;
+}
+
+.btn-remove-field:hover {
+  background-color: #d9534f;
+}
+
+.receipt-form {
+  background-color: #ECF2F9;
+}
