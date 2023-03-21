@@ -11,7 +11,7 @@
 
   <input type="file" accept=".jpg,.jpeg,.png,.bmp" class="file-input" (change)="onFileSelected($event)" #fileUpload>
 
-  <div class="file-upload" *ngIf="!isLoading">
+  <div class="file-upload p-4" *ngIf="!isLoading">
 
     {{fileName || "No image uploaded yet."}}
 
@@ -21,6 +21,7 @@
     </button>
   </div>
 
-  <button class="btn btn-primary mx-2 my-3" (click)="uploadFile()" *ngIf="!isLoading">Upload Image</button>
+  <button class="btn btn-primary mx-3 my-3 shadow-lg fw-bold" (click)="uploadFile()" *ngIf="!isLoading">Upload Image</button>
+  <button class="btn btn-primary mx-2 my-3 shadow-lg fw-bold" (click)="onBackButtonClick()" *ngIf="!isLoading"  type="button">Back</button>
 
 </html>

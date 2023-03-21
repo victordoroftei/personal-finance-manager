@@ -2,20 +2,20 @@
 
 <html>
 
-<body class="dialog-body">
+  <body class="dialog-body">
 
-  <h1 class="h1-error" mat-dialog-title *ngIf="data.errorOccurred">{{data.message}}</h1>
+    <h1 class="h1-error" mat-dialog-title *ngIf="data.errorOccurred">{{data.message}}</h1>
 
-  <h1 class="h1-regular" mat-dialog-title *ngIf="!data.errorOccurred">{{data.message}}</h1>
+    <h1 class="h1-regular" mat-dialog-title *ngIf="!data.errorOccurred">{{data.message}}</h1>
 
-  <div mat-dialog-content class="dialog-content">
+    <div mat-dialog-content class="dialog-content">
 
-  </div>
+    </div>
 
-  <div mat-dialog-actions class="dialog-actions" align="center">
-    <button mat-button (click)="onBackClick()">Back to the main page</button>
-  </div>
+    <div mat-dialog-actions class="dialog-actions" align="center">
+      <button mat-button (click)="onBackClick()">Back to the main page</button>
+    </div>
 
-</body>
+  </body>
 
 </html>

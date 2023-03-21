@@ -62,13 +62,23 @@
         <div class="col-sm-2"></div>
 
         <div class="col-sm-2">
-          <button class="form-control btn btn-primary mx-2 mb-4 shadow-lg fw-bold" [disabled]="!myForm.valid" type="submit">Add Receipt</button>
+          <button class="form-control btn btn-primary mx-2 shadow-lg fw-bold" [disabled]="!myForm.valid" type="submit">Add Receipt</button>
         </div>
 
         <div class="col-sm-2">
-          <button class="form-control btn btn-primary mx-2 mb-4 shadow-lg fw-bold" (click)="addItemFieldFromButton($event)">Add Item Field</button>
+          <button class="form-control btn btn-primary mx-2 shadow-lg fw-bold" (click)="addItemFieldFromButton($event)">Add Item Field</button>
         </div>
 
+      </div>
+
+      <div class="form-group row">
+        <div class="col-sm-2"></div>
+
+        <div class="col-sm-2"></div>
+
+        <div class="col-sm-4">
+          <button class="form-control btn btn-primary mx-2 mb-4 shadow-lg fw-bold" (click)="onBackButtonClick()">Back To The Main Menu</button>
+        </div>
       </div>
 
     </form>

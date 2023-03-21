@@ -27,6 +27,26 @@ export class ReceiptService {
     });
   }
 
+  getPossibleYears() {
+    let url = this.receiptsUrl + "/years";
+    return this.httpClient.get<HttpResponse<any>>(url, {
+      headers: {
+        "Authorization": "Bearer " + this.token
+      },
+      observe: "response" as "body"
+    });
+  }
+
+  getReceiptsForMonthAndYear(year: number, month: number) {
+    let url = `${this.receiptsUrl}/date?year=${year}&month=${month}`;
+    return this.httpClient.get<HttpResponse<any>>(url, {
+      headers: {
+        "Authorization": "Bearer " + this.token
+      },
+      observe: "response" as "body"
+    });
+  }
+
   uploadFile(data: FormData) {
     let url = this.receiptsUrl + "/upload";
 

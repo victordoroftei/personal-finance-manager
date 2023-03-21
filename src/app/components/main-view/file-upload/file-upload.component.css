@@ -23,12 +23,12 @@ html {
   color: red;
 }
 
-#login-button, #signup-button, #update-account-button {
+.btn {
   background-color: #00a1f2;
-  border-color: #00a1f2;
+  border-color: #00A1F2;
 }
 
-#login-button:hover, #signup-button:hover, #update-account-button:hover {
+.btn:hover {
   background-color: #0b5f89;
   border-color: #0b5f89;
 }

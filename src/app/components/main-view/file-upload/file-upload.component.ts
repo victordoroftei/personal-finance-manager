@@ -53,4 +53,8 @@ export class FileUploadComponent {
       this.isLoading = false;
     });
   }
+
+  onBackButtonClick() {
+    this.router.navigate(["/main-view/main-page"]);
+  }
 }

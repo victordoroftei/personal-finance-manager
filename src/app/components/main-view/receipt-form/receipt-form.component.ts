@@ -252,7 +252,7 @@ export class ReceiptFormComponent {
       label: 'Receipt Date:',
       type: 'datetime-local',
       value: receiptDate.replace('T', ' '),
-      required: false,
+      required: true,
       disabled: false
     };
 
@@ -341,6 +341,10 @@ export class ReceiptFormComponent {
     }
 
     this.calculatedTotalField.value = sum.toString();
+  }
+
+  onBackButtonClick() {
+    this.router.navigate(["/main-view/main-page"]);
   }
 }
 

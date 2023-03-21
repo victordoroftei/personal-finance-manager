@@ -25,6 +25,9 @@ import { RegisterComponent } from './components/register/register.component';
 import { RegisterDialogComponent } from './components/register/register-dialog/register-dialog.component';
 import {MatDialogModule} from "@angular/material/dialog";
 import { ReceiptFormDialogComponent } from './components/main-view/receipt-form/receipt-form-dialog/receipt-form-dialog.component';
+import { ManageReceiptsComponent } from './components/main-view/manage-receipts/manage-receipts.component';
+import {MatSelectModule} from "@angular/material/select";
+import { ReceiptItemsDialogComponent } from './components/main-view/manage-receipts/receipt-items-dialog/receipt-items-dialog.component';
 
 @NgModule({
   declarations: [
@@ -40,6 +43,8 @@ import { ReceiptFormDialogComponent } from './components/main-view/receipt-form/
     RegisterComponent,
     RegisterDialogComponent,
     ReceiptFormDialogComponent,
+    ManageReceiptsComponent,
+    ReceiptItemsDialogComponent,
   ],
   imports: [
     BrowserModule,
@@ -55,7 +60,8 @@ import { ReceiptFormDialogComponent } from './components/main-view/receipt-form/
     MatProgressBarModule,
     MatFormFieldModule,
     MatInputModule,
-    MatDialogModule
+    MatDialogModule,
+    MatSelectModule
   ],
   providers: [LoginService],
   bootstrap: [AppComponent]

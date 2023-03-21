@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+
+<html>
+
+  <body>
+
+    <div class="form-group px-5 py-3 row">
+
+      <div class="col-sm-3">
+
+      </div>
+
+      <div class="col-sm-2 fw-bold text-center">
+
+        <p>Receipt Year:</p>
+        <mat-form-field appearance="fill">
+          <mat-label>Select Year</mat-label>
+          <mat-select [(ngModel)]="yearInput" [required]="true">
+            <mat-option *ngFor="let year of possibleYears" [value]="year">
+              {{year}}
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
+
+      </div>
+
+      <div class="col-sm-2 fw-bold text-center">
+
+        <p>Receipt Month:</p>
+        <mat-form-field appearance="fill">
+          <mat-label>Select Month</mat-label>
+          <mat-select [(ngModel)]="monthInput">
+            <mat-option *ngFor="let month of possibleMonths" [value]="month.value">
+              {{month.name}}
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
+
+      </div>
+
+      <div class="col-sm-2 fw-bold text-center">
+
+        <p><br></p>
+        <button mat-button class="btn btn-primary btn-lg search-btn mt-1 text-white shadow" (click)="doSearch()">
+          <mat-icon>search</mat-icon>
+          Search
+        </button>
+
+      </div>
+
+    </div>
+
+    <div *ngIf="submitted">
+      <div class="receipt-row row my-4 py-2 rounded-5 shadow" *ngFor="let receipt of filteredReceipts">
+
+        <div class="col-sm-2">
+
+        </div>
+
+        <div class="col-sm-2 text-center">
+            <div class="row">
+              <p>
+                <strong>Retailer:</strong>
+              </p>
+            </div>
+            <div class="row">
+              <p>
+                {{receipt.retailer}}
+              </p>
+            </div>
+        </div>
+
+        <div class="col-sm-2 text-center">
+          <div class="row">
+            <p>
+              <strong>Price:</strong>
+            </p>
+          </div>
+          <div class="row">
+            <p>
+              {{receipt.calculatedTotal}}
+            </p>
+          </div>
+        </div>
+
+        <div class="col-sm-2 text-center">
+          <div class="row">
+            <p>
+              <strong>Date:</strong>
+            </p>
+          </div>
+          <div class="row">
+            <p>
+              {{formatDate(receipt.receiptDate)}}
+            </p>
+          </div>
+        </div>
+
+        <div class="col-sm-2 text-center">
+          <div class="row">
+            <p>
+            </p>
+          </div>
+          <div class="row">
+            <button mat-button class="btn btn-primary btn-lg search-btn mt-1 text-white shadow" (click)="openDialog(receipt)">
+              <mat-icon>list</mat-icon>
+              See Items
+            </button>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+  </body>
+
+</html>

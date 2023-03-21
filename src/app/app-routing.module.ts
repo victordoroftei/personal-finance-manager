@@ -7,6 +7,7 @@ import {ReceiptFormComponent} from "./components/main-view/receipt-form/receipt-
 import {FileUploadComponent} from "./components/main-view/file-upload/file-upload.component";
 import {MainPageComponent} from "./components/main-view/main-page/main-page.component";
 import {RegisterComponent} from "./components/register/register.component";
+import {ManageReceiptsComponent} from "./components/main-view/manage-receipts/manage-receipts.component";
 
 const routes: Routes = [
   {
@@ -43,6 +44,10 @@ const routes: Routes = [
       {
         path: "file-upload",
         component: FileUploadComponent
+      },
+      {
+        path: "manage-receipts",
+        component: ManageReceiptsComponent
       }
     ]
   }
