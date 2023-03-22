@@ -4,11 +4,13 @@
 
 button {
   background-color: #00A1F2;
+  color: white !important;
 }
 
 button:hover {
   background-color: aqua;
   transition: all 0.2s ease;
+  color: white !important;
 }
 
 .h1-error {

@@ -11,7 +11,7 @@ import {ReceiptItemsDialogComponent} from "./receipt-items-dialog/receipt-items-
 })
 export class ManageReceiptsComponent {
 
-  possibleYears: number[] = [];
+  possibleYears: YearItem[] = [];
 
   possibleMonths: MonthItem[] = [];
 
@@ -21,7 +21,11 @@ export class ManageReceiptsComponent {
 
   monthInput: number = 0;
 
-  submitted: boolean = false;
+  receiptsFound: boolean = false;
+
+  noResults: boolean = false;
+
+  showYearInputError: boolean = false;
 
   filteredReceipts: ReceiptModel[] = [];
 
@@ -46,10 +50,32 @@ export class ManageReceiptsComponent {
 
   ngOnInit() {
     this.receiptService.getPossibleYears().subscribe(data => {
-      this.possibleYears = data.body;
-      if (this.possibleYears.length == 0) {
-        this.possibleYears = [2023];
+      if (data.body.length == 0) {
+        let item: YearItem = {
+          displayedValue: '2023',
+          actualValue: 2023
+        };
+
+        this.possibleYears = [item];
+        return;
       }
+
+      //this.possibleYears = data.body;
+      let yearList: number[] = data.body;
+      for (let i = 0; i < yearList.length; i++) {
+        let item: YearItem = {
+          displayedValue: `${yearList[i]}`,
+          actualValue: yearList[i]
+        };
+
+        this.possibleYears.push(item);
+      }
+
+      let item: YearItem = {
+        displayedValue: "Any Year",
+        actualValue: -1
+      };
+      this.possibleYears.push(item);
     });
 
     let monthNames = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
@@ -65,15 +91,24 @@ export class ManageReceiptsComponent {
   }
 
   doSearch() {
+    if (this.yearInput == 0) {
+      this.showYearInputError = true;
+      return;
+    }
+
     this.receiptService.getReceiptsForMonthAndYear(this.yearInput, this.monthInput).subscribe(data => {
+      this.showYearInputError = false;
+
       let response = data.body;
       if (response.length == 0) {
-        alert("There are no receipts for the given date!");
+        this.receiptsFound = false;
+        this.noResults = true;
       } else {
         this.filteredReceipts = data.body;
+        this.noResults = false;
+        this.receiptsFound = true;
       }
     });
-    this.submitted = true;
   }
 
   formatDate(receiptDate: string | null) {
@@ -87,5 +122,10 @@ export class ManageReceiptsComponent {
 
 type MonthItem = {
   name: string,
-    value: number
+  value: number
+}
+
+type YearItem = {
+  displayedValue: string,
+  actualValue: number
 }

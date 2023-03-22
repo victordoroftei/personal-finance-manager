@@ -25,3 +25,11 @@ body {
   background-color: #0b5f89;
   border-color: #0b5f89;
 }
+
+.error-message {
+  color: red;
+}
+
+.back-button {
+  color: #00A1F2 !important;
+}

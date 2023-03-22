@@ -6,21 +6,35 @@
 
     <div class="form-group px-5 py-3 row">
 
-      <div class="col-sm-3">
+      <div class="col-sm-2 fw-bold text-center">
+
+        <p><br></p>
+
+        <button routerLink="../main-page" mat-button class="btn bg-transparent mt-1 back-button">
+          <mat-icon>keyboard_arrow_left</mat-icon>
+          Back to the main page
+        </button>
+
+      </div>
+
+      <div class="col-sm-1">
 
       </div>
 
       <div class="col-sm-2 fw-bold text-center">
 
         <p>Receipt Year:</p>
+
         <mat-form-field appearance="fill">
           <mat-label>Select Year</mat-label>
           <mat-select [(ngModel)]="yearInput" [required]="true">
-            <mat-option *ngFor="let year of possibleYears" [value]="year">
-              {{year}}
+            <mat-option *ngFor="let year of possibleYears" [value]="year.actualValue">
+              {{year.displayedValue}}
             </mat-option>
           </mat-select>
         </mat-form-field>
+
+        <p class="error-message" *ngIf="showYearInputError">A year must be selected!</p>
 
       </div>
 
@@ -41,6 +55,7 @@
       <div class="col-sm-2 fw-bold text-center">
 
         <p><br></p>
+
         <button mat-button class="btn btn-primary btn-lg search-btn mt-1 text-white shadow" (click)="doSearch()">
           <mat-icon>search</mat-icon>
           Search
@@ -50,8 +65,16 @@
 
     </div>
 
-    <div *ngIf="submitted">
-      <div class="receipt-row row my-4 py-2 rounded-5 shadow" *ngFor="let receipt of filteredReceipts">
+    <div *ngIf="noResults">
+      <div class="receipt-row row my-4 py-3 mx-2 rounded-5 shadow text-center">
+        <h4>
+          No receipts were found for the selected period!
+        </h4>
+      </div>
+    </div>
+
+    <div *ngIf="receiptsFound">
+      <div class="receipt-row row my-4 py-2 mx-2 rounded-5 shadow" *ngFor="let receipt of filteredReceipts">
 
         <div class="col-sm-2">
 
