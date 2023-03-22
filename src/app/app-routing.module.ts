@@ -8,6 +8,7 @@ import {FileUploadComponent} from "./components/main-view/file-upload/file-uploa
 import {MainPageComponent} from "./components/main-view/main-page/main-page.component";
 import {RegisterComponent} from "./components/register/register.component";
 import {ManageReceiptsComponent} from "./components/main-view/manage-receipts/manage-receipts.component";
+import {SpendingStatisticsComponent} from "./components/main-view/spending-statistics/spending-statistics.component";
 
 const routes: Routes = [
   {
@@ -48,6 +49,10 @@ const routes: Routes = [
       {
         path: "manage-receipts",
         component: ManageReceiptsComponent
+      },
+      {
+        path: "spending-statistics",
+        component: SpendingStatisticsComponent
       }
     ]
   }
