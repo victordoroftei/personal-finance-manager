@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import {LoginService} from "../../services/login-service";
+import {UserService} from "../../services/user-service";
 import {Router} from "@angular/router";
 import {FormControl, FormGroup, Validators} from "@angular/forms";
 import jwtDecode from "jwt-decode";
@@ -19,7 +19,7 @@ export interface JWTPayload {
 })
 export class LoginComponent {
 
-  constructor(private loginService: LoginService, private router: Router) {
+  constructor(private userService: UserService, private router: Router) {
 
   }
 
@@ -59,7 +59,7 @@ export class LoginComponent {
 
     if (!this.showEmailAddressError && !this.showPasswordError) {
       this.isLoading = true;
-      this.loginService.login(email, password).subscribe(() => {
+      this.userService.login(email, password).subscribe(() => {
           this.isLoading = false;
           this.responseError = null;
           const token = localStorage.getItem("token");

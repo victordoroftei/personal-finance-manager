@@ -1,25 +1,41 @@
 import {Injectable} from '@angular/core';
-import {BehaviorSubject, tap} from "rxjs";
+import {BehaviorSubject, Observable, tap} from "rxjs";
 import {LoggedInUserModel} from "../models/logged-in-user.model";
 import {HttpClient, HttpHeaders, HttpResponse} from "@angular/common/http";
 import {Router} from "@angular/router";
 import {JWTPayload} from "../components/login/login.component";
 import jwtDecode from "jwt-decode";
+import {UserModel} from "../models/user.model";
 
 @Injectable({
   providedIn: 'root'
 })
 
-export class LoginService {
+export class UserService {
 
   loggedUser = new BehaviorSubject<LoggedInUserModel>(null!);
 
   loginUrl: string = "http://localhost:8080/login";
 
+  usersUrl: string = "http://localhost:8080/users";
+
   private tokenExpirationTimer: any;
 
-  constructor(private http: HttpClient, private router: Router) {
+  constructor(private httpClient: HttpClient, private router: Router) {
 
+  }
+
+  getUserById() {
+    let url: string = this.usersUrl;
+    let token = localStorage.getItem("token");
+
+    return this.httpClient.get<HttpResponse<any>>(url, {
+      headers: {
+        "Authorization": "Bearer " + token,
+        "Content-Type": "application/json"
+      },
+      observe: "response" as "body"
+    });
   }
 
   login(email: string, password: string) {
@@ -31,7 +47,7 @@ export class LoginService {
       observe: "response" as "body"
     };
 
-    return this.http.post<HttpResponse<any>>(this.loginUrl, null, httpOptions).pipe(tap(responseData => {
+    return this.httpClient.post<HttpResponse<any>>(this.loginUrl, null, httpOptions).pipe(tap(responseData => {
       const authHeader = String(String(responseData.headers.get("Authorization")) || '');
 
       if (authHeader.startsWith("Bearer ")) {
@@ -89,5 +105,17 @@ export class LoginService {
         this.logout();
       },
       expirationDuration);
+  }
+
+  updateAccount(userModel: UserModel): Observable<any> {
+    let url = "http://localhost:8080/users";
+    let token = localStorage.getItem("token");
+
+    return this.httpClient.put(url, userModel, {
+      headers: {
+        'Authorization': "Bearer " + token,
+        'Content-Type': 'application/json'
+      }
+    });
   }
 }

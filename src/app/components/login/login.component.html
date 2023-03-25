@@ -23,7 +23,7 @@
 
         <label for="input-email-address" class="form-label">Email Address</label>
         <div id="email-tooltip"></div>
-        <small class="error-message"
+        <small class="error-message fw-bold"
                *ngIf="showEmailAddressError">
           Invalid email address!
         </small>
@@ -33,12 +33,12 @@
                placeholder="Enter your password..." formControlName="password">
         <label for="input-password">Password</label>
         <div id="password-tooltip">
-          <small class="error-message"
+          <small class="error-message fw-bold"
                  *ngIf="showPasswordError">
             Invalid password!
           </small>
         </div>
-        <small class="error-message"
+        <small class="error-message fw-bold"
                *ngIf=responseError>
           Invalid credentials!
         </small>

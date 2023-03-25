@@ -7,7 +7,7 @@ import { LoginComponent } from './components/login/login.component';
 import {FormsModule, ReactiveFormsModule} from "@angular/forms";
 import { MainViewComponent } from './components/main-view/main-view.component';
 import { ReceiptFormComponent } from './components/main-view/receipt-form/receipt-form.component';
-import {LoginService} from "./services/login-service";
+import {UserService} from "./services/user-service";
 import {HttpClientModule} from "@angular/common/http";
 import {MatProgressSpinnerModule} from "@angular/material/progress-spinner";
 import { LoadingSpinnerLoginComponent } from './components/utils/loading-spinner-login/loading-spinner-login.component';
@@ -31,6 +31,8 @@ import { ReceiptItemsDialogComponent } from './components/main-view/manage-recei
 import { SpendingStatisticsComponent } from './components/main-view/spending-statistics/spending-statistics.component';
 import { SpendingStatisticsErrorDialogComponent } from './components/main-view/spending-statistics/spending-statistics-error-dialog/spending-statistics-error-dialog.component';
 import {NgApexchartsModule} from "ng-apexcharts";
+import { ManageAccountComponent } from './components/main-view/manage-account/manage-account.component';
+import { ManageAccountDialogComponent } from './components/main-view/manage-account/manage-account-dialog/manage-account-dialog.component';
 
 @NgModule({
   declarations: [
@@ -50,6 +52,8 @@ import {NgApexchartsModule} from "ng-apexcharts";
     ReceiptItemsDialogComponent,
     SpendingStatisticsComponent,
     SpendingStatisticsErrorDialogComponent,
+    ManageAccountComponent,
+    ManageAccountDialogComponent,
   ],
     imports: [
         BrowserModule,
@@ -69,7 +73,7 @@ import {NgApexchartsModule} from "ng-apexcharts";
         MatSelectModule,
         NgApexchartsModule
     ],
-  providers: [LoginService],
+  providers: [UserService],
   bootstrap: [AppComponent]
 })
 export class AppModule {

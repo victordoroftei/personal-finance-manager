@@ -1,0 +1,46 @@
+html, body {
+  background-color: #ECF2F9;
+}
+
+.form-login, .form-register, .form-update-account {
+  background: rgba(0, 0, 0, .60);
+  max-width: 450px;
+  margin: auto;
+  padding: 20px;
+  border-radius: 10px;
+}
+
+.form-register, .form-update-account {
+  margin-top: 3%;
+}
+
+.error-message {
+  color: red;
+}
+
+#login-button, #signup-button, #update-account-button {
+  background-color: #00A1F2;
+  border-color: #00A1F2;
+}
+
+#login-button:hover, #signup-button:hover, #update-account-button:hover {
+  background-color: #0b5f89;
+  border-color: #0b5f89;
+}
+
+.loading-spinner {
+  text-align: center;
+  padding-top: 14%;
+}
+
+.updating-text {
+  font-weight: bold;
+}
+
+.blank-div {
+  background-color: #ECF2F9;
+}
+
+.extremely-small-font-size {
+  font-size: 0.001rem;
+}

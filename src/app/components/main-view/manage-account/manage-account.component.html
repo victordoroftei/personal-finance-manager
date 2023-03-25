@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+
+<html>
+
+  <body>
+
+    <div class="loading-spinner" *ngIf="isLoading">
+      <app-loading-spinner-login></app-loading-spinner-login>
+      <p class="updating-text">Updating account...</p>
+    </div>
+
+    <div class="blank-div">
+      <p class="extremely-small-font-size">.</p>
+    </div>
+
+    <form action="" method="post" class="form-update-account text-center" [formGroup]="updateAccountForm"
+          (submit)="onSubmit(updateAccountForm)" *ngIf="!isLoading">
+      <h3 style="color: white">Manage Your Account</h3>
+
+      <hr style="color: white">
+      <div class="form-floating mb-3">
+        <input type="text" class="form-control mb-3" id="input-first-name" name="input-first-name"
+               formControlName="firstName" placeholder="Enter your first name...">
+        <label for="input-first-name">Firstname</label>
+      </div>
+      <small class="error-message fw-bold" *ngIf="showFirstNameError">Invalid first name!</small>
+
+      <hr style="color: white">
+      <div class="form-floating mb-3">
+        <input type="text" class="form-control mb-3" id="input-last-name" name="input-last-name"
+               formControlName="lastName" placeholder="Enter your last name...">
+        <label for="input-last-name">Lastname</label>
+      </div>
+      <small class="error-message fw-bold" *ngIf="showLastNameError">Invalid last name!</small>
+
+      <hr style="color: white">
+      <div class="form-floating mb-3">
+        <input type="email" class="form-control mb-3" id="input-email" name="input-email"
+               formControlName="email" placeholder="Enter your email address...">
+        <label for="input-email">Email address</label>
+      </div>
+
+      <hr style="color: white">
+      <div class="form-floating mb-3">
+        <input type="password" class="form-control mb-3" id="input-password" name="input-password"
+               formControlName="password" placeholder="Enter your password...">
+        <label for="input-password">New password</label>
+      </div>
+      <small class="error-message fw-bold" *ngIf="showPasswordError">Please enter a valid password! (The password should be at least 8 characters long!)</small>
+
+      <hr style="color: white">
+      <div class="form-floating mb-3">
+        <input type="password" class="form-control mb-3" id="input-repeat-password" name="input-repeat-password"
+               formControlName="confirmPassword" placeholder="Confirm your password...">
+        <label for="input-repeat-password">Confirm new password</label>
+      </div>
+      <small class="error-message fw-bold" *ngIf="showPasswordsUnmatch">Please confirm the password!</small>
+
+      <hr style="color: white">
+      <button type="submit" class="btn btn-primary w-100 mb-2 fw-bold" id="update-account-button">Save changes</button>
+      <a class="btn btn-secondary w-100 mb-2" routerLink="/main-view/main-page" role="button" id="back-button">Back</a>
+    </form>
+
+  </body>
+
+</html>

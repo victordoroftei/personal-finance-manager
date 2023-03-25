@@ -4,14 +4,16 @@
 
   <body class="dialog-body">
 
-    <h1 mat-dialog-title class="fw-bold text-center">Your account has been successfully created!</h1>
+    <h1 mat-dialog-title class="fw-bold text-lg-center">Success!</h1>
 
     <div mat-dialog-content class="dialog-content">
-
+      <p>
+        Your account settings have been successfully modified!
+      </p>
     </div>
 
     <div mat-dialog-actions class="dialog-actions" align="center">
-      <button mat-button (click)="onOkClick()">Ok</button>
+      <button mat-button (click)="onClose()">Close</button>
     </div>
 
   </body>

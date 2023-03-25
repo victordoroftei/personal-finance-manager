@@ -9,6 +9,7 @@ import {MainPageComponent} from "./components/main-view/main-page/main-page.comp
 import {RegisterComponent} from "./components/register/register.component";
 import {ManageReceiptsComponent} from "./components/main-view/manage-receipts/manage-receipts.component";
 import {SpendingStatisticsComponent} from "./components/main-view/spending-statistics/spending-statistics.component";
+import {ManageAccountComponent} from "./components/main-view/manage-account/manage-account.component";
 
 const routes: Routes = [
   {
@@ -53,6 +54,10 @@ const routes: Routes = [
       {
         path: "spending-statistics",
         component: SpendingStatisticsComponent
+      },
+      {
+        path: "manage-account",
+        component: ManageAccountComponent
       }
     ]
   }

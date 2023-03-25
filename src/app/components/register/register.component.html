@@ -25,7 +25,7 @@
       <div class="form-floating mb-3">
         <input type="text" class="form-control" id="first-name" name="input-first-name"
                placeholder="First Name" formControlName="firstName">
-        <small class="error-message"
+        <small class="error-message fw-bold"
                *ngIf="showFirstNameError">
           Invalid first name!
         </small>
@@ -35,7 +35,7 @@
       <div class="form-floating mb-3">
         <input type="text" class="form-control" id="last-name" name="input-last-name"
                placeholder="Last Name" formControlName="lastName">
-        <small class="error-message"
+        <small class="error-message fw-bold"
                *ngIf="showLastNameError">
           Invalid last name!
         </small>
@@ -47,11 +47,11 @@
                placeholder="Enter your email address..." formControlName="email">
         <label for="input-email" class="form-label">Email address</label>
       </div>
-      <small class="error-message"
+      <small class="error-message fw-bold"
              *ngIf="showEmailAddressError">
         Invalid email address!
       </small>
-      <small class="error-message"
+      <small class="error-message fw-bold"
              *ngIf="showUsedEmailAddressError">
         Email address already in use!
       </small>
@@ -61,7 +61,7 @@
                placeholder="Enter your password..." formControlName="password">
         <label for="input-password">Password</label>
       </div>
-      <small class="error-message"
+      <small class="error-message fw-bold"
              *ngIf="showPasswordError">
         Invalid password!<br>
         The length of the password must be at least 8 characters!
@@ -72,7 +72,7 @@
                placeholder="Confirm your password..." formControlName="confirmPassword">
         <label for="input-repeat-password">Confirm password</label>
       </div>
-      <small class="error-message"
+      <small class="error-message fw-bold"
              *ngIf="showPasswordsUnmatch">
         Passwords do not match!
       </small>
