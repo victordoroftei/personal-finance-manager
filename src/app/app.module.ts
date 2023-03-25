@@ -29,9 +29,7 @@ import { ManageReceiptsComponent } from './components/main-view/manage-receipts/
 import {MatSelectModule} from "@angular/material/select";
 import { ReceiptItemsDialogComponent } from './components/main-view/manage-receipts/receipt-items-dialog/receipt-items-dialog.component';
 import { SpendingStatisticsComponent } from './components/main-view/spending-statistics/spending-statistics.component';
-import {NgChartsModule} from "ng2-charts";
 import { SpendingStatisticsErrorDialogComponent } from './components/main-view/spending-statistics/spending-statistics-error-dialog/spending-statistics-error-dialog.component';
-import {NgScrollbarModule} from "ngx-scrollbar";
 import {NgApexchartsModule} from "ng-apexcharts";
 
 @NgModule({
@@ -69,8 +67,6 @@ import {NgApexchartsModule} from "ng-apexcharts";
         MatInputModule,
         MatDialogModule,
         MatSelectModule,
-        NgChartsModule,
-        NgScrollbarModule,
         NgApexchartsModule
     ],
   providers: [LoginService],
