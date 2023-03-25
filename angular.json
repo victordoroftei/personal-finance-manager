@@ -24,13 +24,12 @@
               "src/favicon.ico",
               "src/assets"
             ],
-            "styles": [
-              "@angular/material/prebuilt-themes/deeppurple-amber.css",
-              "src/styles.scss",
-              "node_modules/bootstrap/dist/css/bootstrap.css"
-            ],
             "scripts": [
               "./node_modules/bootstrap/dist/js/bootstrap.js"
+            ],
+            "styles": [
+              "src/custom-theme.scss",
+              "node_modules/bootstrap/dist/css/bootstrap.css"
             ]
           },
           "configurations": {
@@ -89,10 +88,6 @@
             "assets": [
               "src/favicon.ico",
               "src/assets"
-            ],
-            "styles": [
-              "@angular/material/prebuilt-themes/deeppurple-amber.css",
-              "src/styles.scss"
             ],
             "scripts": []
           }

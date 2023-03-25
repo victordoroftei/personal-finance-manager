@@ -28,8 +28,9 @@ import { ReceiptFormDialogComponent } from './components/main-view/receipt-form/
 import { ManageReceiptsComponent } from './components/main-view/manage-receipts/manage-receipts.component';
 import {MatSelectModule} from "@angular/material/select";
 import { ReceiptItemsDialogComponent } from './components/main-view/manage-receipts/receipt-items-dialog/receipt-items-dialog.component';
-import {GoogleChartsModule} from "angular-google-charts";
 import { SpendingStatisticsComponent } from './components/main-view/spending-statistics/spending-statistics.component';
+import {NgChartsModule} from "ng2-charts";
+import { SpendingStatisticsErrorDialogComponent } from './components/main-view/spending-statistics/spending-statistics-error-dialog/spending-statistics-error-dialog.component';
 
 @NgModule({
   declarations: [
@@ -48,6 +49,7 @@ import { SpendingStatisticsComponent } from './components/main-view/spending-sta
     ManageReceiptsComponent,
     ReceiptItemsDialogComponent,
     SpendingStatisticsComponent,
+    SpendingStatisticsErrorDialogComponent,
   ],
   imports: [
     BrowserModule,
@@ -65,7 +67,7 @@ import { SpendingStatisticsComponent } from './components/main-view/spending-sta
     MatInputModule,
     MatDialogModule,
     MatSelectModule,
-    GoogleChartsModule
+    NgChartsModule
   ],
   providers: [LoginService],
   bootstrap: [AppComponent]
