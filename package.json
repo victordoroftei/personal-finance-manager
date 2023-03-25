@@ -24,6 +24,7 @@
     "chart.js": "^4.2.1",
     "jwt-decode": "^3.1.2",
     "ng2-charts": "^4.1.1",
+    "ngx-scrollbar": "^11.0.0",
     "rxjs": "~7.8.0",
     "tslib": "^2.3.0",
     "zone.js": "~0.12.0"

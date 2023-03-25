@@ -31,6 +31,7 @@ import { ReceiptItemsDialogComponent } from './components/main-view/manage-recei
 import { SpendingStatisticsComponent } from './components/main-view/spending-statistics/spending-statistics.component';
 import {NgChartsModule} from "ng2-charts";
 import { SpendingStatisticsErrorDialogComponent } from './components/main-view/spending-statistics/spending-statistics-error-dialog/spending-statistics-error-dialog.component';
+import {NgScrollbarModule} from "ngx-scrollbar";
 
 @NgModule({
   declarations: [
@@ -67,7 +68,8 @@ import { SpendingStatisticsErrorDialogComponent } from './components/main-view/s
     MatInputModule,
     MatDialogModule,
     MatSelectModule,
-    NgChartsModule
+    NgChartsModule,
+    NgScrollbarModule
   ],
   providers: [LoginService],
   bootstrap: [AppComponent]

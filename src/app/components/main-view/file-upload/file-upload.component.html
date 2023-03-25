@@ -11,17 +11,80 @@
 
   <input type="file" accept=".jpg,.jpeg,.png,.bmp" class="file-input" (change)="onFileSelected($event)" #fileUpload>
 
-  <div class="file-upload p-4" *ngIf="!isLoading">
+  <div class="file-upload p-5" *ngIf="!isLoading">
 
-    {{fileName || "No image uploaded yet."}}
+    <div class="row">
 
-    <button mat-mini-fab color="primary" class="upload-btn"
-            (click)="fileUpload.click()">
-      <mat-icon>attach_file</mat-icon>
-    </button>
+      <div class="col-4">
+
+      </div>
+
+      <div class="col-2 pt-3 text-end fw-bold custom-border-top custom-border-left">
+        <p *ngIf="isFileUploaded">
+          {{fileName}}
+        </p>
+
+        <p class="red-text" *ngIf="!isFileUploaded">
+          No image uploaded yet.
+        </p>
+      </div>
+
+      <div class="col-2 pt-2 custom-border-top custom-border-right">
+        <button mat-button color="primary" class="btn btn-primary fw-bold shadow upload-btn"
+                (click)="fileUpload.click()">
+          <mat-icon>attach_file</mat-icon>
+          Upload File
+        </button>
+      </div>
+
+    </div>
+
+    <div class="row">
+
+      <div class="col-4">
+
+      </div>
+
+      <div class="col-2 pb-2 text-end custom-border-bottom custom-border-left" *ngIf="isFileUploaded">
+        <button mat-button class="btn btn-primary my-3 shadow fw-bold" (click)="uploadFile()" *ngIf="!isLoading">
+          <mat-icon>settings</mat-icon>
+          Process Image
+        </button>
+      </div>
+
+      <div class="col-2 pb-2 text-end custom-border-bottom custom-border-left" *ngIf="!isFileUploaded">
+        <button mat-button class="btn btn-primary my-3 shadow fw-bold" (click)="uploadFile()" *ngIf="!isLoading" disabled>
+          <mat-icon>settings</mat-icon>
+          Process Image
+        </button>
+      </div>
+
+      <div class="col-2 pb-2 custom-border-bottom custom-border-right">
+        <button mat-button class="btn btn-primary my-3 shadow fw-bold" (click)="onBackButtonClick()" *ngIf="!isLoading"  type="button">
+          Back
+        </button>
+      </div>
+
+    </div>
+
+    <div class="row mt-5">
+
+      <div class="col-4">
+
+      </div>
+
+      <div class="col-4 custom-text-justify fw-bold">
+        <p>
+          Upload an image of a receipt. It will be processed by Tesseract, an optical character recognition engine for recognizing text within images.
+          <br><br>
+          After the image is uploaded, you will be able to edit data which has been incorrectly recognized by the engine.
+          <br><br>
+          You also have the possibility of inserting any items that the engine was not able to recognize.
+        </p>
+      </div>
+
+    </div>
+
   </div>
-
-  <button class="btn btn-primary mx-3 my-3 shadow-lg fw-bold" (click)="uploadFile()" *ngIf="!isLoading">Upload Image</button>
-  <button class="btn btn-primary mx-2 my-3 shadow-lg fw-bold" (click)="onBackButtonClick()" *ngIf="!isLoading"  type="button">Back</button>
 
 </html>

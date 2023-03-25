@@ -6,6 +6,24 @@ html {
   display: none;
 }
 
+.custom-border-top {
+  border-top: solid #00A1F2;
+  background-color: #F0F0F5;
+}
+
+.custom-border-left {
+  border-left: solid #00A1F2;
+}
+
+.custom-border-right {
+  border-right: solid #00A1F2;
+}
+
+.custom-border-bottom {
+  border-bottom: solid #00A1F2;
+  background-color: #F0F0F5;
+}
+
 .form-login, .form-register, .form-update-account {
   background: rgba(0, 0, 0, .60);
   max-width: 450px;
@@ -26,6 +44,7 @@ html {
 .btn {
   background-color: #00a1f2;
   border-color: #00A1F2;
+  color: white !important;
 }
 
 .btn:hover {
@@ -42,3 +61,22 @@ html {
   font-weight: bold;
 }
 
+.upload-btn {
+  background-color: #00a1f2;
+  border-color: #00A1F2;
+  color: white !important;
+}
+
+.upload-btn:hover {
+  background-color: #0b5f89;
+  border-color: #0b5f89;
+  color: white !important;
+}
+
+.custom-text-justify {
+  text-align: justify;
+}
+
+.red-text {
+  color: red;
+}

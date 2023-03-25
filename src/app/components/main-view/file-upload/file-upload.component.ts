@@ -17,6 +17,8 @@ export class FileUploadComponent {
 
   isLoading: boolean = false;
 
+  isFileUploaded: boolean = false;
+
   constructor(private receiptService: ReceiptService, private router: Router) {
 
   }
@@ -30,6 +32,8 @@ export class FileUploadComponent {
       let formData = new FormData();
       formData.append("file", file);
       this.formData = formData;
+
+      this.isFileUploaded = true;
     }
   }
 
