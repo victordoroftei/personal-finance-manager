@@ -24,4 +24,15 @@ export class StatisticsService {
       observe: "response" as "body"
     });
   }
+
+  getYearlyStatisticsByMonth(year: number) {
+    let url = this.statisticsUrl + `/yearly?year=${year}`;
+    return this.httpClient.get<HttpResponse<any>>(url, {
+      headers: {
+        "Authorization": "Bearer " + this.token,
+        "Content-Type": "application/json"
+      },
+      observe: "response" as "body"
+    });
+  }
 }

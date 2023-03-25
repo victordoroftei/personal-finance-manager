@@ -32,6 +32,7 @@ import { SpendingStatisticsComponent } from './components/main-view/spending-sta
 import {NgChartsModule} from "ng2-charts";
 import { SpendingStatisticsErrorDialogComponent } from './components/main-view/spending-statistics/spending-statistics-error-dialog/spending-statistics-error-dialog.component';
 import {NgScrollbarModule} from "ngx-scrollbar";
+import {NgApexchartsModule} from "ng-apexcharts";
 
 @NgModule({
   declarations: [
@@ -52,25 +53,26 @@ import {NgScrollbarModule} from "ngx-scrollbar";
     SpendingStatisticsComponent,
     SpendingStatisticsErrorDialogComponent,
   ],
-  imports: [
-    BrowserModule,
-    AppRoutingModule,
-    ReactiveFormsModule,
-    HttpClientModule,
-    MatProgressSpinnerModule,
-    FormsModule,
-    MatButtonModule,
-    MatIconModule,
-    MatMenuModule,
-    BrowserAnimationsModule,
-    MatProgressBarModule,
-    MatFormFieldModule,
-    MatInputModule,
-    MatDialogModule,
-    MatSelectModule,
-    NgChartsModule,
-    NgScrollbarModule
-  ],
+    imports: [
+        BrowserModule,
+        AppRoutingModule,
+        ReactiveFormsModule,
+        HttpClientModule,
+        MatProgressSpinnerModule,
+        FormsModule,
+        MatButtonModule,
+        MatIconModule,
+        MatMenuModule,
+        BrowserAnimationsModule,
+        MatProgressBarModule,
+        MatFormFieldModule,
+        MatInputModule,
+        MatDialogModule,
+        MatSelectModule,
+        NgChartsModule,
+        NgScrollbarModule,
+        NgApexchartsModule
+    ],
   providers: [LoginService],
   bootstrap: [AppComponent]
 })

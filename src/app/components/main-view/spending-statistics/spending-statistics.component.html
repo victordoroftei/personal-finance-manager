@@ -23,7 +23,7 @@
 
       <div class="col-sm-2 fw-bold text-center">
 
-        <p>Receipt Year:</p>
+        <p>Year:</p>
 
         <mat-form-field appearance="fill">
           <mat-label>Select Year</mat-label>
@@ -40,7 +40,7 @@
 
       <div class="col-sm-2 fw-bold text-center">
 
-        <p>Receipt Month:</p>
+        <p>Month:</p>
         <mat-form-field appearance="fill">
           <mat-label>Select Month</mat-label>
           <mat-select [(ngModel)]="monthInput">
@@ -56,7 +56,7 @@
 
         <p><br></p>
 
-        <button mat-button class="btn btn-primary btn-lg search-btn mt-1 text-white shadow" (click)="showPieChart()">
+        <button mat-button class="btn btn-primary btn-lg search-btn mt-1 text-white shadow" (click)="showCharts()">
           <mat-icon>pie_chart</mat-icon>
           Show Statistics
         </button>
@@ -84,12 +84,35 @@
       </div>
 
       <div class="col-sm-2" *ngIf="!pieChartNoData">
-        <canvas baseChart
-                [datasets]="pieChartData"
-                [labels]="labels"
-                [type]="'pie'">
-        </canvas>
+        <apx-chart
+          [series]="pieChartOptions.series"
+          [chart]="pieChartOptions.chart"
+          [labels]="pieChartOptions.labels"
+          [responsive]="pieChartOptions.responsive"
+        ></apx-chart>
       </div>
+    </div>
+
+    <div class="row mt-3" *ngIf="isShowLineChart">
+
+      <div class="col-sm-4">
+
+      </div>
+
+      <div class="col-sm-4">
+
+        <apx-chart
+          [series]="lineChartOptions.series"
+          [chart]="lineChartOptions.chart"
+          [xaxis]="lineChartOptions.xaxis"
+          [dataLabels]="lineChartOptions.dataLabels"
+          [grid]="lineChartOptions.grid"
+          [stroke]="lineChartOptions.stroke"
+          [title]="lineChartOptions.title"
+        ></apx-chart>
+
+      </div>
+
     </div>
 
   </body>
