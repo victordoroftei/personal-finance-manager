@@ -113,10 +113,10 @@ export class SpendingStatisticsComponent {
       this.showYearInputError = false;
       this.percentageModel = data.body;
 
-      if (isNaN(this.percentageModel.receipts) && isNaN(this.percentageModel.invoices) && isNaN(this.percentageModel.expenses)) {
-        this.pieChartNoData = true;
+      if (this.percentageModel.receipts == 0 && this.percentageModel.invoices == 0 && this.percentageModel.expenses == 0) {
         this.labels = [];
         this.pieChartData = [{data: [0, 0, 0]}];
+        this.pieChartNoData = true;
         this.openDialog(this.yearInput, this.monthInput);
 
         return;
@@ -124,7 +124,7 @@ export class SpendingStatisticsComponent {
         this.pieChartNoData = false;
       }
 
-      this.labels = ['Receipts %', 'Invoices %', 'Expenses %'];
+      this.labels = ['Receipts', 'Invoices', 'Expenses'];
       this.pieChartData = [{
         data: [this.percentageModel.receipts, this.percentageModel.invoices, this.percentageModel.expenses]
       }];
