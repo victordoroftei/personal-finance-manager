@@ -4,16 +4,93 @@
 
   <body>
 
-    <google-chart
-      [title]="title"
-      [type]="type"
-      [data]="data"
-      [columns]="columnNames"
-      [options]="options"
-      [width]="width"
-      [height]="height"
-    >
-    </google-chart>
+    <div class="form-group px-5 py-3 row">
+
+      <div class="col-sm-2 fw-bold text-center">
+
+        <p><br></p>
+
+        <button routerLink="../main-page" mat-button class="btn bg-transparent mt-1 back-button">
+          <mat-icon>keyboard_arrow_left</mat-icon>
+          Back to the main page
+        </button>
+
+      </div>
+
+      <div class="col-sm-1">
+
+      </div>
+
+      <div class="col-sm-2 fw-bold text-center">
+
+        <p>Receipt Year:</p>
+
+        <mat-form-field appearance="fill">
+          <mat-label>Select Year</mat-label>
+          <mat-select [(ngModel)]="yearInput" [required]="true">
+            <mat-option *ngFor="let year of possibleYears" [value]="year.actualValue">
+              {{year.displayedValue}}
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
+
+        <p class="error-message" *ngIf="showYearInputError">A year must be selected!</p>
+
+      </div>
+
+      <div class="col-sm-2 fw-bold text-center">
+
+        <p>Receipt Month:</p>
+        <mat-form-field appearance="fill">
+          <mat-label>Select Month</mat-label>
+          <mat-select [(ngModel)]="monthInput">
+            <mat-option *ngFor="let month of possibleMonths" [value]="month.value">
+              {{month.name}}
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
+
+      </div>
+
+      <div class="col-sm-2 fw-bold text-center">
+
+        <p><br></p>
+
+        <button mat-button class="btn btn-primary btn-lg search-btn mt-1 text-white shadow" (click)="showPieChart()">
+          <mat-icon>pie_chart</mat-icon>
+          Show Statistics
+        </button>
+
+      </div>
+
+    </div>
+
+    <!--
+
+    <div class="row mt-4 mb-3 fw-bold text-center error-message" *ngIf="pieChartNoData">
+      <p>There is no data for {{getMonthNameFromIndex(monthInput)}} {{yearInput}}!</p>
+    </div>
+
+    -->
+
+    <div class="row mt-4 mb-3 fw-bold text-center" *ngIf="!pieChartNoData">
+      <p>{{pieChartHeaderText}}</p>
+    </div>
+
+    <div class="row">
+
+      <div class="col-sm-5">
+
+      </div>
+
+      <div class="col-sm-2" *ngIf="!pieChartNoData">
+        <canvas baseChart
+                [datasets]="pieChartData"
+                [labels]="labels"
+                [type]="'pie'">
+        </canvas>
+      </div>
+    </div>
 
   </body>
 

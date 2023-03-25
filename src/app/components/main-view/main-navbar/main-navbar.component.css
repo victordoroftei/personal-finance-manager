@@ -16,3 +16,7 @@
 .btn:hover {
   background-color: #00A1F2;
 }
+
+.navbar-anchor {
+  font-size: 1.5rem;
+}

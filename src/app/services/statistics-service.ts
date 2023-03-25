@@ -14,8 +14,8 @@ export class StatisticsService {
   constructor(private httpClient: HttpClient) {
   }
 
-  getStatistics() {
-    let url = this.statisticsUrl;
+  getStatistics(year: number, month: number) {
+    let url = this.statisticsUrl + `?year=${year}&month=${month}`;
     return this.httpClient.get<HttpResponse<any>>(url, {
       headers: {
         "Authorization": "Bearer " + this.token,
