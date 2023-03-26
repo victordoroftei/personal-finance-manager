@@ -33,3 +33,7 @@ body {
 .back-button {
   color: #00A1F2 !important;
 }
+
+.full-height {
+  height: calc(100% - 106px);
+}
