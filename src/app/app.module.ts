@@ -33,6 +33,7 @@ import { SpendingStatisticsErrorDialogComponent } from './components/main-view/s
 import {NgApexchartsModule} from "ng-apexcharts";
 import { ManageAccountComponent } from './components/main-view/manage-account/manage-account.component';
 import { ManageAccountDialogComponent } from './components/main-view/manage-account/manage-account-dialog/manage-account-dialog.component';
+import { TestPageComponent } from './components/main-view/test-page/test-page.component';
 
 @NgModule({
   declarations: [
@@ -54,6 +55,7 @@ import { ManageAccountDialogComponent } from './components/main-view/manage-acco
     SpendingStatisticsErrorDialogComponent,
     ManageAccountComponent,
     ManageAccountDialogComponent,
+    TestPageComponent,
   ],
     imports: [
         BrowserModule,
