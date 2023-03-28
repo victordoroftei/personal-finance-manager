@@ -12,6 +12,7 @@ import {SpendingStatisticsComponent} from "./components/main-view/spending-stati
 import {ManageAccountComponent} from "./components/main-view/manage-account/manage-account.component";
 import {TestPageComponent} from "./components/main-view/test-page/test-page.component";
 import {AddInvoiceComponent} from "./components/main-view/add-invoice/add-invoice.component";
+import {ManageInvoicesComponent} from "./components/main-view/manage-invoices/manage-invoices.component";
 
 const routes: Routes = [
   {
@@ -64,6 +65,10 @@ const routes: Routes = [
       {
         path: "add-invoice",
         component: AddInvoiceComponent
+      },
+      {
+        path: "manage-invoices",
+        component: ManageInvoicesComponent
       },
       {
         path: "test-page",

@@ -1,55 +1,38 @@
-import { Component } from '@angular/core';
-import {ReceiptService} from "../../../services/receipt-service";
-import {ReceiptModel} from "../../../models/receipt.model";
-import {MatDialog} from "@angular/material/dialog";
-import {ReceiptItemsDialogComponent} from "./receipt-items-dialog/receipt-items-dialog.component";
+import {Component} from '@angular/core';
+import {InvoiceService} from "../../../services/invoice-service";
+import {InvoiceModel} from "../../../models/invoice.model";
 
 @Component({
-  selector: 'app-manage-receipts',
-  templateUrl: './manage-receipts.component.html',
-  styleUrls: ['./manage-receipts.component.css']
+  selector: 'app-manage-invoices',
+  templateUrl: './manage-invoices.component.html',
+  styleUrls: ['./manage-invoices.component.css']
 })
-export class ManageReceiptsComponent {
+export class ManageInvoicesComponent {
 
   possibleYears: YearItem[] = [];
 
   possibleMonths: MonthItem[] = [];
 
-  receiptService: ReceiptService;
+  invoiceService: InvoiceService;
 
   yearInput: number = 0;
 
   monthInput: number = -1;
 
-  receiptsFound: boolean = false;
+  invoicesFound: boolean = false;
 
   noResults: boolean = false;
 
   showYearInputError: boolean = false;
 
-  filteredReceipts: ReceiptModel[] = [];
+  filteredInvoices: InvoiceModel[] = [];
 
-  constructor(receiptService: ReceiptService, public dialog: MatDialog) {
-    this.receiptService = receiptService;
-  }
-
-  openDialog(receipt: ReceiptModel): void {
-    const dialogRef = this.dialog.open(ReceiptItemsDialogComponent, {
-      data: {
-        itemNames: receipt.itemNames,
-        itemPrices: receipt.itemPrices,
-        total: receipt.calculatedTotal,
-        date: receipt.receiptDate
-      }
-    });
-
-    dialogRef.afterClosed().subscribe(result => {
-      console.log("Dialog closed");
-    });
+  constructor(invoiceService: InvoiceService) {
+    this.invoiceService = invoiceService;
   }
 
   ngOnInit() {
-    this.receiptService.getPossibleYears().subscribe(data => {
+    this.invoiceService.getPossibleYears().subscribe(data => {
       if (data.body.length == 0) {
         let item: YearItem = {
           displayedValue: '2023',
@@ -96,27 +79,35 @@ export class ManageReceiptsComponent {
       return;
     }
 
-    this.receiptService.getReceiptsForMonthAndYear(this.yearInput, this.monthInput).subscribe(data => {
+    this.invoiceService.getInvoicesForMonthAndYear(this.yearInput, this.monthInput).subscribe(data => {
       this.showYearInputError = false;
 
       let response = data.body;
       if (response.length == 0) {
-        this.receiptsFound = false;
+        this.invoicesFound = false;
         this.noResults = true;
       } else {
-        this.filteredReceipts = data.body;
+        this.filteredInvoices = data.body;
         this.noResults = false;
-        this.receiptsFound = true;
+        this.invoicesFound = true;
       }
     });
   }
 
-  formatDate(receiptDate: string | null) {
+  formatDate(receiptDate: string | null): string {
     if (receiptDate === null) {
-      return receiptDate;
+      return "";
     }
 
-    return receiptDate.replace("T", " ");
+    return receiptDate.split("T")[0];
+  }
+
+  getPaidDate(date: string): string {
+    if (date == null) {
+      return "This invoice has not been paid yet!";
+    }
+
+    return this.formatDate(date);
   }
 }
 

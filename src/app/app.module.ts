@@ -39,6 +39,7 @@ import {MatDatepickerModule} from "@angular/material/datepicker";
 import {MAT_DATE_LOCALE, MatNativeDateModule} from "@angular/material/core";
 import {MatCheckboxModule} from "@angular/material/checkbox";
 import { AddInvoiceDialogComponent } from './components/main-view/add-invoice/add-invoice-dialog/add-invoice-dialog.component';
+import { ManageInvoicesComponent } from './components/main-view/manage-invoices/manage-invoices.component';
 
 @NgModule({
   declarations: [
@@ -63,6 +64,7 @@ import { AddInvoiceDialogComponent } from './components/main-view/add-invoice/ad
     TestPageComponent,
     AddInvoiceComponent,
     AddInvoiceDialogComponent,
+    ManageInvoicesComponent,
   ],
   imports: [
     BrowserModule,

@@ -28,4 +28,23 @@ export class InvoiceService {
     });
   }
 
+  getPossibleYears() {
+    let url = this.invoicesUrl + "/years";
+    return this.httpClient.get<HttpResponse<any>>(url, {
+      headers: {
+        "Authorization": "Bearer " + this.token
+      },
+      observe: "response" as "body"
+    });
+  }
+
+  getInvoicesForMonthAndYear(year: number, month: number) {
+    let url = `${this.invoicesUrl}/date?year=${year}&month=${month}`;
+    return this.httpClient.get<HttpResponse<any>>(url, {
+      headers: {
+        "Authorization": "Bearer " + this.token
+      },
+      observe: "response" as "body"
+    });
+  }
 }
