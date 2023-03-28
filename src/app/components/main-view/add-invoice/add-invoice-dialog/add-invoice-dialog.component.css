@@ -1,0 +1,24 @@
+.h1-regular {
+  color: black;
+  font-size: 1rem;
+}
+
+.h1-error {
+  color: red;
+  font-size: 1rem;
+}
+
+.dialog-body {
+  border-color: #00A1F2;
+}
+
+button {
+  background-color: #00A1F2;
+  color: white !important;
+}
+
+button:hover {
+  background-color: aqua;
+  transition: all 0.2s ease;
+  color: white !important;
+}

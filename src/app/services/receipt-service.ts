@@ -60,8 +60,6 @@ export class ReceiptService {
 
   addReceipt(receipt: ReceiptModel) {
     let url = this.receiptsUrl;
-    console.log("Receipt (Receipt Service):\n");
-    console.log(receipt);
 
     return this.httpClient.post<HttpResponse<any>>(url, receipt, {
       headers: {

@@ -6,6 +6,25 @@
 
     <form class="d-flex flex-column receipt-form" (ngSubmit)="onSubmit()" #myForm="ngForm">
 
+      <div class="form-group row pt-3">
+
+        <!-- This is here to place the table horizontally align the table in the middle of the page -->
+        <div class="col-sm-2">
+
+        </div>
+
+        <div class="col-sm-2">
+
+        </div>
+
+        <div class="col-sm-4 text-center fw-bold">
+          <h4>
+            New Receipt
+          </h4>
+        </div>
+
+      </div>
+
       <div class="form-group row" *ngFor="let inputField of inputFields">
 
         <!-- This is here to place the table horizontally align the table in the middle of the page -->

@@ -91,6 +91,10 @@ export class ReceiptFormComponent {
       itemPrices.push(item.price);
     }
 
+    if (`${receiptDate}`.split(":").length - 1 == 1) {
+      receiptDate = receiptDate + ":00";
+    }
+
     let receipt = new ReceiptModel(itemNames, itemPrices,
       actualCalculatedTotal, actualDetectedTotal, retailer, this.imagePath, receiptDate);
     console.log(receipt);

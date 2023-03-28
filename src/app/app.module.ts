@@ -34,6 +34,11 @@ import {NgApexchartsModule} from "ng-apexcharts";
 import { ManageAccountComponent } from './components/main-view/manage-account/manage-account.component';
 import { ManageAccountDialogComponent } from './components/main-view/manage-account/manage-account-dialog/manage-account-dialog.component';
 import { TestPageComponent } from './components/main-view/test-page/test-page.component';
+import { AddInvoiceComponent } from './components/main-view/add-invoice/add-invoice.component';
+import {MatDatepickerModule} from "@angular/material/datepicker";
+import {MAT_DATE_LOCALE, MatNativeDateModule} from "@angular/material/core";
+import {MatCheckboxModule} from "@angular/material/checkbox";
+import { AddInvoiceDialogComponent } from './components/main-view/add-invoice/add-invoice-dialog/add-invoice-dialog.component';
 
 @NgModule({
   declarations: [
@@ -56,26 +61,31 @@ import { TestPageComponent } from './components/main-view/test-page/test-page.co
     ManageAccountComponent,
     ManageAccountDialogComponent,
     TestPageComponent,
+    AddInvoiceComponent,
+    AddInvoiceDialogComponent,
   ],
-    imports: [
-        BrowserModule,
-        AppRoutingModule,
-        ReactiveFormsModule,
-        HttpClientModule,
-        MatProgressSpinnerModule,
-        FormsModule,
-        MatButtonModule,
-        MatIconModule,
-        MatMenuModule,
-        BrowserAnimationsModule,
-        MatProgressBarModule,
-        MatFormFieldModule,
-        MatInputModule,
-        MatDialogModule,
-        MatSelectModule,
-        NgApexchartsModule
-    ],
-  providers: [UserService],
+  imports: [
+    BrowserModule,
+    AppRoutingModule,
+    ReactiveFormsModule,
+    HttpClientModule,
+    MatProgressSpinnerModule,
+    FormsModule,
+    MatButtonModule,
+    MatIconModule,
+    MatMenuModule,
+    BrowserAnimationsModule,
+    MatProgressBarModule,
+    MatFormFieldModule,
+    MatInputModule,
+    MatDialogModule,
+    MatSelectModule,
+    NgApexchartsModule,
+    MatDatepickerModule,
+    MatNativeDateModule,
+    MatCheckboxModule
+  ],
+  providers: [UserService, {provide: MAT_DATE_LOCALE, useValue: 'ro-RO'}],
   bootstrap: [AppComponent]
 })
 export class AppModule {

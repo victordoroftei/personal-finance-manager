@@ -11,6 +11,7 @@ import {ManageReceiptsComponent} from "./components/main-view/manage-receipts/ma
 import {SpendingStatisticsComponent} from "./components/main-view/spending-statistics/spending-statistics.component";
 import {ManageAccountComponent} from "./components/main-view/manage-account/manage-account.component";
 import {TestPageComponent} from "./components/main-view/test-page/test-page.component";
+import {AddInvoiceComponent} from "./components/main-view/add-invoice/add-invoice.component";
 
 const routes: Routes = [
   {
@@ -59,6 +60,10 @@ const routes: Routes = [
       {
         path: "manage-account",
         component: ManageAccountComponent
+      },
+      {
+        path: "add-invoice",
+        component: AddInvoiceComponent
       },
       {
         path: "test-page",

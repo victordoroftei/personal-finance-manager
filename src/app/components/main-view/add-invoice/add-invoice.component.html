@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+
+<html>
+
+  <body>
+
+    <div class="invoice-form-div text-center pt-5">
+      <form class="invoice-form">
+
+        <h4 class="fw-bold">
+          New Invoice
+        </h4>
+
+        <br>
+        <br>
+        <table class="invoice-form-table full-width text-center" cellspacing="0">
+
+          <tr>
+            <td>
+              <mat-form-field class="full-width">
+                <mat-label>Retailer</mat-label>
+                <input matInput type="text" [(ngModel)]="retailerModel" name="retailerModel" placeholder="Electrica Furnizare" required minlength="1">
+              </mat-form-field>
+              <div id="retailerError" class="error-message fw-bold mb-2">
+                &nbsp;
+              </div>
+            </td>
+
+            <td>
+              <mat-form-field class="full-width">
+                <mat-label>Invoice Type</mat-label>
+                <mat-select class="mat-select-panel" [(ngModel)]="typeModel" name="typeModel" required>
+                  <mat-option class="mat-option-text" *ngFor="let option of options" [value]="option">
+                    {{option}}
+                  </mat-option>
+                </mat-select>
+              </mat-form-field>
+              <div id="typeError" class="error-message fw-bold mb-2">
+                &nbsp;
+              </div>
+            </td>
+          </tr>
+
+          <tr>
+            <td>
+              <mat-form-field class="full-width">
+                <mat-label>Amount</mat-label>
+                <input matInput type="text" [(ngModel)]="amountModel" name="amountModel" placeholder="87.55" required>
+              </mat-form-field>
+              <div id="amountError" class="error-message fw-bold mb-2">
+                &nbsp;
+              </div>
+            </td>
+
+            <td>
+              <mat-form-field class="full-width">
+                <mat-label>Invoice Issue Date</mat-label>
+                <input matInput [matDatepicker]="invoiceDatePicker" [max]="todayDate" [(ngModel)]="invoiceDateModel" name="invoiceDateModel" required>
+                <!--<mat-hint class="fw-bold">
+                  DD.MM.YYYY
+                </mat-hint>-->
+                <mat-datepicker-toggle matIconSuffix [for]="invoiceDatePicker"></mat-datepicker-toggle>
+                <mat-datepicker #invoiceDatePicker></mat-datepicker>
+              </mat-form-field>
+              <div id="invoiceDateError" class="error-message fw-bold mb-2">
+                &nbsp;
+              </div>
+            </td>
+          </tr>
+
+          <tr>
+            <td>
+              <mat-form-field class="full-width">
+                <mat-label>Due Date</mat-label>
+                <input matInput [matDatepicker]="dueDatePicker" [min]="todayDate" [(ngModel)]="dueDateModel" name="dueDateModel" required>
+<!--                <mat-hint class="fw-bold">
+                  DD.MM.YYYY
+                </mat-hint>-->
+                <mat-datepicker-toggle matIconSuffix [for]="dueDatePicker"></mat-datepicker-toggle>
+                <mat-datepicker #dueDatePicker></mat-datepicker>
+              </mat-form-field>
+              <div id="dueDateError" class="error-message fw-bold">
+                &nbsp;
+              </div>
+            </td>
+
+            <td>
+              <mat-form-field class="full-width">
+                <mat-label>Payment Date</mat-label>
+                <input matInput [matDatepicker]="paymentDatePicker" [max]="todayDate" [(ngModel)]="paymentDateModel" name="paymentDateModel">
+<!--                <mat-hint class="fw-bold">
+                  DD.MM.YYYY<br>(Leave empty if you haven't paid the invoice yet)
+                </mat-hint>-->
+                <mat-hint class="fw-bold">
+                  Leave empty if you haven't paid the invoice yet
+                </mat-hint>
+                <mat-datepicker-toggle matIconSuffix [for]="paymentDatePicker"></mat-datepicker-toggle>
+                <mat-datepicker #paymentDatePicker></mat-datepicker>
+              </mat-form-field>
+              <div id="paymentDateError" class="error-message fw-bold">
+                &nbsp;
+              </div>
+            </td>
+          </tr>
+
+        </table>
+
+      </form>
+
+      <button class="btn btn-primary half-width mt-4 fw-bold" (click)="addInvoice()">
+        Add New Invoice
+      </button>
+      <br>
+
+      <button routerLink="../main-page" class="btn btn-primary half-width mt-4 fw-bold">
+        Back To The Main Page
+      </button>
+    </div>
+
+  </body>
+
+</html>

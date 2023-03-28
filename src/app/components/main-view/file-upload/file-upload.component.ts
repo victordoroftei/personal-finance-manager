@@ -3,6 +3,10 @@ import {ReceiptService} from "../../../services/receipt-service";
 import {NavigationExtras, Router} from "@angular/router";
 import {ReceiptModel} from "../../../models/receipt.model";
 import {Subscription} from "rxjs";
+import {MatDialog} from "@angular/material/dialog";
+import {
+  SpendingStatisticsErrorDialogComponent
+} from "../spending-statistics/spending-statistics-error-dialog/spending-statistics-error-dialog.component";
 
 @Component({
   selector: 'app-file-upload',
@@ -19,7 +23,7 @@ export class FileUploadComponent {
 
   isFileUploaded: boolean = false;
 
-  constructor(private receiptService: ReceiptService, private router: Router) {
+  constructor(private receiptService: ReceiptService, private router: Router, private dialog: MatDialog) {
 
   }
 
@@ -40,6 +44,7 @@ export class FileUploadComponent {
   uploadFile() {
     this.isLoading = true;
     this.receiptService.uploadFile(this.formData).subscribe(data => {
+      console.log(data.status);
       if (data.status == 202) {
         let body: ReceiptModel = data.body;
         let navigationExtras: NavigationExtras = {
@@ -53,8 +58,24 @@ export class FileUploadComponent {
       }
     }, error => {
       console.log(error);
-      alert("ERROR!" + error.message);
+      if (error.status == 500) {
+        let str: string = error.error + "<br>Please upload another image, or insert the receipt data manually!";
+        this.openDialog(str);
+      } else {
+        alert("Uploaded image could not be processed!");
+      }
+
       this.isLoading = false;
+    });
+  }
+
+  openDialog(str: string): void {
+    const dialogRef = this.dialog.open(SpendingStatisticsErrorDialogComponent, {
+      data: {errorMessage: str}
+    });
+
+    dialogRef.afterClosed().subscribe(result => {
+      console.log("Dialog closed");
     });
   }
 
