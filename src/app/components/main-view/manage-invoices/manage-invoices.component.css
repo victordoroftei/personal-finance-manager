@@ -7,13 +7,25 @@ html {
 }
 
 body {
-  background-color: #ECF2F9;
+  background-color: #F0F0F5;
 }
 
 
 .receipt-row {
   background-color: #F0F0F5;
   border: solid #00A1F2;
+}
+
+.dates-div {
+  background-color: #ECF2F9;
+}
+
+.results-div {
+  background-color: #ECF2F9;
+}
+
+.no-results-div {
+  background-color: #ECF2F9;
 }
 
 .btn {
@@ -32,4 +44,10 @@ body {
 
 .back-button {
   color: #00A1F2 !important;
+}
+
+.body-wrapper {
+  background-color: #ECF2F9;
+  height: calc(100vh - 106px);
+  overflow-x: hidden;
 }

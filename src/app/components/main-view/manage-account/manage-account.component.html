@@ -1,9 +1,6 @@
 <!DOCTYPE html>
 
-<html>
-
-  <body>
-
+<div class="body-wrapper">
     <div class="loading-spinner" *ngIf="isLoading">
       <app-loading-spinner-login></app-loading-spinner-login>
       <p class="updating-text">Updating account...</p>
@@ -60,7 +57,4 @@
       <button type="submit" class="btn btn-primary w-100 mb-2 fw-bold" id="update-account-button">Save changes</button>
       <a class="btn btn-secondary w-100 mb-2" routerLink="/main-view/main-page" role="button" id="back-button">Back</a>
     </form>
-
-  </body>
-
-</html>
+</div>

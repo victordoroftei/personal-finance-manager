@@ -33,3 +33,9 @@ body {
 .back-button {
   color: #00A1F2 !important;
 }
+
+.body-wrapper {
+  height: calc(100vh - 106px);
+  background-color: #ECF2F9;
+  overflow-x: hidden;
+}

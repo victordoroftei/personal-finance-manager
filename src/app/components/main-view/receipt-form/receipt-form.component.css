@@ -25,7 +25,8 @@
 .receipt-form {
   background-color: #ECF2F9;
 }
-
-body {
+.body-wrapper {
   background-color: #ECF2F9;
+  overflow-x: hidden;
+  height: calc(100vh - 106px);
 }

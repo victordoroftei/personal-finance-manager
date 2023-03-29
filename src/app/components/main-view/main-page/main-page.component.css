@@ -1,5 +1,6 @@
-html {
+.body-wrapper {
   background-color: #ECF2F9;
+  height: calc(100vh - 106px);
 }
 
 .card {
