@@ -1,0 +1,83 @@
+<div class="body-wrapper">
+
+  <div class="invoice-form-div text-center pt-5">
+    <form class="invoice-form">
+
+      <h4 class="fw-bold">
+        New Expense
+      </h4>
+
+      <br>
+      <br>
+      <table class="invoice-form-table full-width text-center" cellspacing="0">
+
+        <tr>
+          <td>
+            <mat-form-field class="full-width">
+              <mat-label>Description</mat-label>
+              <input matInput type="text" [(ngModel)]="descriptionModel" name="descriptionModel"
+                     placeholder="e.g. Rent for July" required minlength="1">
+            </mat-form-field>
+            <div id="descriptionError" class="error-message fw-bold mb-2">
+              &nbsp;
+            </div>
+          </td>
+
+          <td>
+            <mat-form-field class="full-width">
+              <mat-label>Expense Type</mat-label>
+              <mat-select class="mat-select-panel" [(ngModel)]="typeModel" name="typeModel" required>
+                <mat-option class="mat-option-text" *ngFor="let option of options" [value]="option.name">
+                  <img src="../../../../assets/icons/{{option.icon}}" height="30px" width="30px">
+                  <span class="mx-3"><strong>{{option.name}}</strong></span>
+                </mat-option>
+              </mat-select>
+            </mat-form-field>
+            <div id="typeError" class="error-message fw-bold mb-2">
+              &nbsp;
+            </div>
+          </td>
+        </tr>
+
+        <tr>
+          <td>
+            <mat-form-field class="full-width">
+              <mat-label>Price</mat-label>
+              <input matInput type="text" [(ngModel)]="priceModel" name="priceModel" placeholder="55.87" required>
+            </mat-form-field>
+            <div id="priceError" class="error-message fw-bold mb-2">
+              &nbsp;
+            </div>
+          </td>
+
+          <td>
+            <mat-form-field class="full-width">
+              <mat-label>Date</mat-label>
+              <input matInput [matDatepicker]="expenseDatePicker" [max]="todayDate" [(ngModel)]="expenseDateModel"
+                     name="expenseDateModel" required>
+              <!--<mat-hint class="fw-bold">
+                DD.MM.YYYY
+              </mat-hint>-->
+              <mat-datepicker-toggle matIconSuffix [for]="expenseDatePicker"></mat-datepicker-toggle>
+              <mat-datepicker #expenseDatePicker></mat-datepicker>
+            </mat-form-field>
+            <div id="expenseDateError" class="error-message fw-bold mb-2">
+              &nbsp;
+            </div>
+          </td>
+        </tr>
+      </table>
+
+    </form>
+
+    <button class="btn btn-primary half-width mt-4 fw-bold" (click)="addExpense()">
+      Add New Expense
+    </button>
+    <br>
+
+    <button routerLink="../main-page" class="btn btn-primary half-width mt-4 fw-bold">
+      Back To The Main Page
+    </button>
+  </div>
+
+</div>

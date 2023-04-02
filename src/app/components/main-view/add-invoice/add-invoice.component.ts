@@ -10,9 +10,10 @@ import {AddInvoiceDialogComponent} from "./add-invoice-dialog/add-invoice-dialog
   styleUrls: ['./add-invoice.component.css']
 })
 export class AddInvoiceComponent {
+
   isPaymentDateInputDisabled: boolean = true;
 
-  options: string[] = ["ELECTRICITY", "GAS", "TELECOMMUNICATIONS", "WATER", "OTHER"];
+  options: OptionItem[] = [];
 
   todayDate: Date = new Date();
 
@@ -41,19 +42,20 @@ export class AddInvoiceComponent {
   amountModel: number = 0;
 
   constructor(private invoiceService: InvoiceService, private dialog: MatDialog) {
-
+    this.addOptionItem("ELECTRICITY", "electricity.png");
+    this.addOptionItem("TELECOMMUNICATIONS", "telecommunications.png");
+    this.addOptionItem("GAS", "gas.png");
+    this.addOptionItem("WATER", "water.png");
+    this.addOptionItem("OTHER", "other.png");
   }
 
-  setDisabled(checked: boolean) {
-    this.isPaymentDateInputDisabled = !checked;
-  }
+  addOptionItem(name: string, icon: string): void {
+    let item: OptionItem = {
+      name: name,
+      icon: icon
+    };
 
-  test() {
-    console.log(this.dueDateModel);
-    console.log(this.paymentDateModel);
-    console.log(this.invoiceDateModel);
-    let dueDate = new Date(this.dueDateModel);
-    console.log(this.parseDate(dueDate.getFullYear(), dueDate.getMonth() + 1, dueDate.getDate()));
+    this.options.push(item);
   }
 
   parseDate(year: number, month: number, day: number) {
@@ -66,7 +68,7 @@ export class AddInvoiceComponent {
     return `${year}-${month}-${day}T00:00:00`;
   }
 
-  addInvoice() {
+  addInvoice(): void {
     if (!this.validateRetailer()) {
       this.isRetailerError = true;
       // @ts-ignore
@@ -80,7 +82,7 @@ export class AddInvoiceComponent {
     if (!this.validateType()) {
       this.isTypeError = true;
       // @ts-ignore
-      document.getElementById("typeError").innerText = "A type must be selected!";
+      document.getElementById("typeError").innerText = "An invoice type must be selected!";
     } else {
       this.isTypeError = false;
       // @ts-ignore
@@ -90,7 +92,7 @@ export class AddInvoiceComponent {
     if (!this.validateAmount()) {
       this.isAmountError = true;
       // @ts-ignore
-      document.getElementById("amountError").innerText = "A valid amount must be selected!";
+      document.getElementById("amountError").innerText = "A valid amount must be provided!";
     } else {
       this.isAmountError = false;
       // @ts-ignore
@@ -99,7 +101,7 @@ export class AddInvoiceComponent {
 
     let invoiceDate: Date = new Date(this.invoiceDateModel);
 
-    if (this.dueDateModel == null || this.dueDateModel == "" || invoiceDate.getFullYear() <= 1970 || invoiceDate.getFullYear() > 2024) {
+    if (this.invoiceDateModel == null || this.invoiceDateModel == "" || invoiceDate.getFullYear() <= 1970 || invoiceDate.getFullYear() > 2024) {
       this.isInvoiceDateError = true;
       // @ts-ignore
       document.getElementById("invoiceDateError").innerText = "A valid invoice issue date must be selected!";
@@ -136,7 +138,7 @@ export class AddInvoiceComponent {
       document.getElementById("paymentDateError").innerHTML = "&nbsp;";
     }
 
-    if (this.isRetailerError || this.isInvoiceDateError || this.isAmountError || this.isInvoiceDateError || this.isDueDateError || this.isPaymentDateError) {
+    if (this.isRetailerError || this.isTypeError || this.isAmountError || this.isInvoiceDateError || this.isDueDateError || this.isPaymentDateError) {
       return;
     }
 
@@ -199,7 +201,12 @@ export class AddInvoiceComponent {
   }
 
   validateType(): boolean {
-    return this.options.indexOf(this.typeModel) > -1;
+    for (let i = 0; i < this.options.length; i++) {
+      if (this.options[i].name === this.typeModel) {
+        return true;
+      }
+    }
+    return false;
   }
 
   validateAmount(): boolean {
@@ -214,3 +221,8 @@ export class AddInvoiceComponent {
     return true;
   }
 }
+
+type OptionItem = {
+  name: string,
+  icon: string
+};

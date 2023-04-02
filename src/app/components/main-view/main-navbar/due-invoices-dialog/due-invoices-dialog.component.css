@@ -1,5 +1,6 @@
-.dialog-body {
-  border-color: #00A1F2;
+.body-wrapper {
+  border: solid #00A1F2;
+  border-radius: 5px;
 }
 
 button {

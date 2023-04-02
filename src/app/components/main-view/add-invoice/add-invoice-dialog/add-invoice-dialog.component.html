@@ -1,8 +1,4 @@
-<!DOCTYPE html>
-
-<html>
-
-  <body class="dialog-body">
+<div class="body-wrapper">
 
   <h1 class="h1-error fw-bold" mat-dialog-title *ngIf="errorOccurred">
     {{message}}
@@ -17,11 +13,9 @@
   </div>
 
   <div mat-dialog-actions class="dialog-actions" align="center">
-    <button mat-button (click)="onBackClick()">
+    <button mat-button class="btn btn-primary fw-bold" (click)="onBackClick()">
       {{buttonText}}
     </button>
   </div>
 
-  </body>
-
-</html>
+</div>

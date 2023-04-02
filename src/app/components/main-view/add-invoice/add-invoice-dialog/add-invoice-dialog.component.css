@@ -8,10 +8,6 @@
   font-size: 1rem;
 }
 
-.dialog-body {
-  border-color: #00A1F2;
-}
-
 button {
   background-color: #00A1F2;
   color: white !important;
@@ -21,4 +17,9 @@ button:hover {
   background-color: #0b5f89;
   transition: all 0.2s ease;
   color: white !important;
+}
+
+.body-wrapper {
+  border: solid #00A1F2;
+  border-radius: 5px;
 }

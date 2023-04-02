@@ -41,6 +41,7 @@ import {MatCheckboxModule} from "@angular/material/checkbox";
 import { AddInvoiceDialogComponent } from './components/main-view/add-invoice/add-invoice-dialog/add-invoice-dialog.component';
 import { ManageInvoicesComponent } from './components/main-view/manage-invoices/manage-invoices.component';
 import { DueInvoicesDialogComponent } from './components/main-view/main-navbar/due-invoices-dialog/due-invoices-dialog.component';
+import { AddExpenseComponent } from './components/main-view/add-expense/add-expense.component';
 
 @NgModule({
   declarations: [
@@ -67,6 +68,7 @@ import { DueInvoicesDialogComponent } from './components/main-view/main-navbar/d
     AddInvoiceDialogComponent,
     ManageInvoicesComponent,
     DueInvoicesDialogComponent,
+    AddExpenseComponent,
   ],
     imports: [
         BrowserModule,

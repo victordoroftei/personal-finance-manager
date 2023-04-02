@@ -19,7 +19,6 @@ export class InvoiceService {
 
   addInvoice(invoice: InvoiceModel) {
     let url = this.invoicesUrl;
-
     return this.httpClient.post<HttpResponse<any>>(url, invoice, {
       headers: {
         "Authorization": "Bearer " + this.token,
@@ -61,7 +60,6 @@ export class InvoiceService {
 
   payInvoice(invoice: InvoiceEntity) {
     invoice.dueDate = "2023-03-09T10:00:00";
-    console.log(invoice);
     let url = this.invoicesUrl;
     return this.httpClient.patch<HttpResponse<any>>(url, invoice, {
       headers: {

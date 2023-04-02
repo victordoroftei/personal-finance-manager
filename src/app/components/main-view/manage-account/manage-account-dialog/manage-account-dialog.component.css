@@ -1,7 +1,3 @@
-.dialog-body {
-  border-color: #00A1F2;
-}
-
 button {
   background-color: #00A1F2;
   color: white !important;
@@ -19,4 +15,9 @@ button:hover {
 
 .h1-regular {
   color: black;
+}
+
+.body-wrapper {
+  border: solid #00A1F2;
+  border-radius: 5px;
 }
