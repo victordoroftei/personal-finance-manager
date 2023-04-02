@@ -27,4 +27,16 @@ export class ExpenseService {
       observe: "response" as "body"
     });
   }
+
+  getPossibleYears() {
+    let url = this.expensesUrl + "/years";
+
+    return this.httpClient.get<HttpResponse<any>>(url, {
+      headers: {
+        "Authorization": "Bearer " + this.token,
+        "Content-Type": "application/json"
+      },
+      observe: "response" as "body"
+    });
+  }
 }

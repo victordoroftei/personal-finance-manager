@@ -1,0 +1,45 @@
+.body-wrapper {
+  background-color: #ECF2F9;
+  height: calc(100vh - 106px);
+  overflow-x: hidden;
+}
+
+.full-height {
+  height: calc(80% - 106px);
+}
+
+.form-group {
+  background-color: #ECF2F9;
+}
+
+body {
+  background-color: #ECF2F9;
+}
+
+
+.receipt-row {
+  background-color: #F0F0F5;
+  border: solid #00A1F2;
+}
+
+.btn {
+  background-color: #00A1F2;
+  border-color: #00A1F2;
+}
+
+.btn:hover {
+  background-color: #0b5f89;
+  border-color: #0b5f89;
+}
+
+.error-message {
+  color: red;
+}
+
+.back-button {
+  color: #00A1F2 !important;
+}
+
+.borders {
+  border: solid 2px red;
+}

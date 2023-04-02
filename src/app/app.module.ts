@@ -42,6 +42,7 @@ import { AddInvoiceDialogComponent } from './components/main-view/add-invoice/ad
 import { ManageInvoicesComponent } from './components/main-view/manage-invoices/manage-invoices.component';
 import { DueInvoicesDialogComponent } from './components/main-view/main-navbar/due-invoices-dialog/due-invoices-dialog.component';
 import { AddExpenseComponent } from './components/main-view/add-expense/add-expense.component';
+import { ManageExpensesComponent } from './components/main-view/manage-expenses/manage-expenses.component';
 
 @NgModule({
   declarations: [
@@ -69,6 +70,7 @@ import { AddExpenseComponent } from './components/main-view/add-expense/add-expe
     ManageInvoicesComponent,
     DueInvoicesDialogComponent,
     AddExpenseComponent,
+    ManageExpensesComponent,
   ],
     imports: [
         BrowserModule,

@@ -187,7 +187,7 @@ export class SpendingStatisticsComponent {
 
       yaxis: {
         title: {
-          text: "Temperature"
+          text: "Amount"
         }
       },
 
@@ -301,7 +301,7 @@ export class SpendingStatisticsComponent {
       return;
     }
 
-    if (this.monthInput > 0) {
+    if (this.monthInput > 0 || this.yearInput == -1) {
       this.isShowLineChart = false;
       return;
     }

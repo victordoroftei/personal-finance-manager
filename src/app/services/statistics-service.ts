@@ -35,4 +35,15 @@ export class StatisticsService {
       observe: "response" as "body"
     });
   }
+
+  getExpensesMonthly(year: number, month: number) {
+    let url = this.statisticsUrl + `/expenses?year=${year}&month=${month}`;
+    return this.httpClient.get<HttpResponse<any>>(url, {
+      headers: {
+        "Authorization": "Bearer " + this.token,
+        "Content-Type": "application/json"
+      },
+      observe: "response" as "body"
+    });
+  }
 }

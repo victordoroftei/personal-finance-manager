@@ -14,6 +14,7 @@ import {TestPageComponent} from "./components/main-view/test-page/test-page.comp
 import {AddInvoiceComponent} from "./components/main-view/add-invoice/add-invoice.component";
 import {ManageInvoicesComponent} from "./components/main-view/manage-invoices/manage-invoices.component";
 import {AddExpenseComponent} from "./components/main-view/add-expense/add-expense.component";
+import {ManageExpensesComponent} from "./components/main-view/manage-expenses/manage-expenses.component";
 
 const routes: Routes = [
   {
@@ -74,6 +75,10 @@ const routes: Routes = [
       {
         path: "add-expense",
         component: AddExpenseComponent
+      },
+      {
+        path: "manage-expenses",
+        component: ManageExpensesComponent
       },
       {
         path: "test-page",
