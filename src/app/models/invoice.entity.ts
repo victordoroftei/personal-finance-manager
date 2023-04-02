@@ -1,5 +1,6 @@
-export class InvoiceModel {
+export class InvoiceEntity {
 
+  id: number;
   retailer: string;
   amount: number;
   type: string;
@@ -9,7 +10,8 @@ export class InvoiceModel {
   paidDate: string;
   paid: boolean;
 
-  constructor(retailer: string, amount: number, type: string, invoiceDate: string, dueDate: string, insertedDate: string, paidDate: string, paid: boolean) {
+  constructor(id: number, retailer: string, amount: number, type: string, invoiceDate: string, dueDate: string, insertedDate: string, paidDate: string, paid: boolean) {
+    this.id = id;
     this.retailer = retailer;
     this.amount = amount;
     this.type = type;

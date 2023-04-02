@@ -12,7 +12,7 @@ import {AddInvoiceDialogComponent} from "./add-invoice-dialog/add-invoice-dialog
 export class AddInvoiceComponent {
   isPaymentDateInputDisabled: boolean = true;
 
-  options: string[] = ["ELECTRICITY", "GAS", "TELECOMMUNICATIONS", "OTHER"];
+  options: string[] = ["ELECTRICITY", "GAS", "TELECOMMUNICATIONS", "WATER", "OTHER"];
 
   todayDate: Date = new Date();
 

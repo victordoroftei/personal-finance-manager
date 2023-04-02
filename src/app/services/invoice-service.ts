@@ -1,6 +1,7 @@
 import {Injectable} from "@angular/core";
 import {HttpClient, HttpResponse} from "@angular/common/http";
 import {InvoiceModel} from "../models/invoice.model";
+import {InvoiceEntity} from "../models/invoice.entity";
 
 @Injectable({
   providedIn: 'root'
@@ -43,6 +44,29 @@ export class InvoiceService {
     return this.httpClient.get<HttpResponse<any>>(url, {
       headers: {
         "Authorization": "Bearer " + this.token
+      },
+      observe: "response" as "body"
+    });
+  }
+
+  getDueInvoices() {
+    let url = `${this.invoicesUrl}/due`;
+    return this.httpClient.get<HttpResponse<any>>(url, {
+      headers: {
+        "Authorization": "Bearer " + this.token
+      },
+      observe: "response" as "body"
+    });
+  }
+
+  payInvoice(invoice: InvoiceEntity) {
+    invoice.dueDate = "2023-03-09T10:00:00";
+    console.log(invoice);
+    let url = this.invoicesUrl;
+    return this.httpClient.patch<HttpResponse<any>>(url, invoice, {
+      headers: {
+        "Authorization": "Bearer " + this.token,
+        "Content-Type": "application/json"
       },
       observe: "response" as "body"
     });

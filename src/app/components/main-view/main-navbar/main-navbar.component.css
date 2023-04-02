@@ -20,3 +20,30 @@
 .navbar-anchor {
   font-size: 1.5rem;
 }
+
+.dropdown-button {
+  background-color: #00A1F2;
+  border-color: #00A1F2;
+  color: white !important;
+}
+
+.dropdown-button:hover {
+  background-color: #0b5f89;
+  border-color: #0b5f89;
+}
+
+.dropdown-div {
+  border: solid #00A1F2;
+  border-radius: 10px;
+}
+
+.dropdown-hr {
+}
+
+::ng-deep .custom-mat-menu {
+  /*background: rgba(0, 161, 242, 0.95);*/
+}
+
+.text-red {
+  color: red;
+}

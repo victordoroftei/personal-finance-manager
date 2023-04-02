@@ -12,24 +12,56 @@
           Home
         </div>
       </button>
+
       <button type="button" class="btn btn-dark" routerLink="/main-view/spending-statistics">
         <div class="gap-2 with-icon">
           <mat-icon fontIcon="pie_chart"></mat-icon>
           Spending Statistics
         </div>
       </button>
-      <button type="button" class="btn btn-dark" routerLink="/main-view/national-statistics">
+
+      <button type="button" class="btn btn-dark" [matMenuTriggerFor]="menu">
         <div class="gap-2 with-icon">
           <mat-icon fontIcon="calendar_today"></mat-icon>
           Due Invoices
         </div>
       </button>
+
+      <mat-menu #menu="matMenu" class="custom-mat-menu">
+        <div mat-menu-item *ngFor="let invoice of dueInvoicesArray" class="fw-bold my-2">
+          {{invoice.retailer}}
+
+          <br>
+          {{invoice.amount}} RON
+
+          <br>
+          <span class="text-red">DUE BY: {{invoice.dueDate}}</span>
+
+          <br>
+          <button mat-button class="btn btn-primary btn-lg dropdown-button mx-1" (click)="onPayClick(invoice)">
+            <mat-icon [ngStyle]="{'color':'green'}">attach_money</mat-icon>
+            Pay
+          </button>
+
+          <!--
+
+          <button mat-button class="btn btn-primary btn-lg dropdown-button mx-1">
+            <mat-icon [ngStyle]="{'color':'white'}">list</mat-icon>
+            See details
+          </button>
+
+          -->
+          <hr class="dropdown-hr">
+        </div>
+      </mat-menu>
+
       <button type="button" class="btn btn-dark" routerLink="/main-view/manage-account">
         <div class="gap-2 with-icon">
           <mat-icon fontIcon="person"></mat-icon>
           My Account
         </div>
       </button>
+
       <button type="button" class="btn btn-dark" (click)="logout()">
         <div class="gap-2 with-icon">
           <mat-icon fontIcon="logout"></mat-icon>

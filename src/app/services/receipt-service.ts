@@ -60,7 +60,6 @@ export class ReceiptService {
 
   addReceipt(receipt: ReceiptModel) {
     let url = this.receiptsUrl;
-
     return this.httpClient.post<HttpResponse<any>>(url, receipt, {
       headers: {
         "Authorization": "Bearer " + this.token,

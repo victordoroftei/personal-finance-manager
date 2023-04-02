@@ -8,7 +8,7 @@ button {
 }
 
 button:hover {
-  background-color: aqua;
+  background-color: #0b5f89;
   transition: all 0.2s ease;
   color: white !important;
 }
