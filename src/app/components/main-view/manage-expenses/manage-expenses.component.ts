@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import {Component, ViewChild} from '@angular/core';
 import {StatisticsService} from "../../../services/statistics-service";
 import {MatDialog} from "@angular/material/dialog";
 import {FormControl} from "@angular/forms";
@@ -8,7 +8,7 @@ import {
   ApexNonAxisChartSeries,
   ApexResponsive,
   ApexStroke, ApexTitleSubtitle,
-  ApexXAxis, ApexYAxis
+  ApexXAxis, ApexYAxis, ChartComponent
 } from "ng-apexcharts";
 import {ExpensesMonthlyStatisticsModel} from "../../../models/expenses-monthly-statistics.model";
 import {ExpenseService} from "../../../services/expense-service";
@@ -71,15 +71,41 @@ export class ManageExpensesComponent {
 
   showNoDataMessage: string = "";
 
+  isReceiptChecked: boolean = true;
+
+  isInvoiceChecked: boolean = true;
+
+  isRentChecked: boolean = true;
+
+  isFuelChecked: boolean = true;
+
+  isFoodChecked: boolean = true;
+
+  isTransportChecked: boolean = true;
+
+  isEducationChecked: boolean = true;
+
+  isClothingChecked: boolean = true;
+
+  isOtherChecked: boolean = true;
+
+  @ViewChild("monthChart") monthChart: ChartComponent | undefined;
+
+  expensesModel: ExpensesMonthlyStatisticsModel;
+
   constructor(private statisticsService: StatisticsService, private expenseService: ExpenseService, private dialog: MatDialog) {
     this.addOptionItem("RECEIPT", "receipt.png");
     this.addOptionItem("INVOICE", "invoice.png");
     this.addOptionItem("RENT", "rent.png");
     this.addOptionItem("FUEL", "fuel.png");
+    this.addOptionItem("FOOD", "food.png");
     this.addOptionItem("TRANSPORT", "transport.png");
     this.addOptionItem("EDUCATION", "education.png");
     this.addOptionItem("CLOTHING", "clothing.png");
     this.addOptionItem("OTHER", "other.png");
+
+    this.expensesModel =
+      new ExpensesMonthlyStatisticsModel(0, 0, [], [], [], [], [], [], [], [], []);
 
     this.myControl = new FormControl();
     this.myControl.valueChanges.subscribe(value => {
@@ -89,11 +115,11 @@ export class ManageExpensesComponent {
     this.lineChartMonthOptions = {
       series: [
         {
-          name: "Receipts",
+          name: "RECEIPTS",
           data: [28, 29, 33, 36, 32, 32, 33]
         },
         {
-          name: "Invoices",
+          name: "INVOICES",
           data: [12, 11, 14, 18, 17, 13, 13]
         },
         {
@@ -121,90 +147,7 @@ export class ManageExpensesComponent {
         }
       },
 
-      colors: ["#77B6EA", "#545454"],
-      dataLabels: {
-        enabled: true
-      },
-
-      stroke: {
-        curve: "smooth"
-      },
-
-      title: {
-        text: "Breakdown of your expenses for by month",
-        align: "center"
-      },
-
-      grid: {
-        borderColor: "#e7e7e7",
-        row: {
-          colors: ["#f3f3f3", "transparent"], // takes an array which will be repeated on columns
-          opacity: 0.5
-        }
-      },
-
-      markers: {
-        size: 1
-      },
-
-      xaxis: {
-        categories: ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"],
-        title: {
-          text: "Month"
-        }
-      },
-
-      yaxis: {
-        title: {
-          text: "Amount"
-        }
-      },
-
-      legend: {
-        position: "top",
-        horizontalAlign: "right",
-        floating: true,
-        offsetY: -25,
-        offsetX: -5
-      }
-    };
-
-    this.lineChartDayOptions = {
-      series: [
-        {
-          name: "Receipts",
-          data: [28, 29, 33, 36, 32, 32, 33]
-        },
-        {
-          name: "Invoices",
-          data: [12, 11, 14, 18, 17, 13, 13]
-        },
-        {
-          name: "Expenses",
-          data: [12, 11, 14, 40, 17, 13, 13]
-        }
-      ],
-
-      chart: {
-        height: 400,
-        type: "line",
-        dropShadow: {
-          enabled: true,
-          color: "#000",
-          top: 18,
-          left: 7,
-          blur: 10,
-          opacity: 0.2
-        },
-        toolbar: {
-          show: false
-        },
-        zoom: {
-          enabled: false
-        }
-      },
-
-      colors: ["#77B6EA", "#545454"],
+      colors: ["#FF0000", "#0000FF", "#008000", "#ADD8E6", "#800080", "#FFA500", "#FFC0CB", "#000080", "#A52A2A"],
       dataLabels: {
         enabled: true
       },
@@ -299,7 +242,8 @@ export class ManageExpensesComponent {
   addOptionItem(name: string, icon: string): void {
     let item: OptionItem = {
       name: name,
-      icon: icon
+      icon: icon,
+      isChecked: true
     };
 
     this.options.push(item);
@@ -325,43 +269,53 @@ export class ManageExpensesComponent {
     this.statisticsService.getExpensesMonthly(this.yearInput, this.monthInput).subscribe(data => {
       this.showYearInputError = false;
       let expensesModel: ExpensesMonthlyStatisticsModel = data.body;
+      this.expensesModel = expensesModel;
 
       this.lineChartMonthOptions.series = [
         {
-          name: "Receipts",
-          data: expensesModel.receipt
+          name: "RECEIPTS",
+          data: expensesModel.receipt,
+          color: "#FF0000"
         },
         {
-          name: "Invoices",
-          data: expensesModel.invoice
+          name: "INVOICES",
+          data: expensesModel.invoice,
+          color: "#0000FF"
         },
         {
-          name: "Rent",
-          data: expensesModel.rent
+          name: "RENT",
+          data: expensesModel.rent,
+          color: "#008000"
         },
         {
-          name: "Fuel",
-          data: expensesModel.fuel
+          name: "FUEL",
+          data: expensesModel.fuel,
+          color: "#ADD8E6"
         },
         {
-          name: "Food",
-          data: expensesModel.food
+          name: "FOOD",
+          data: expensesModel.food,
+          color: "#800080"
         },
         {
-          name: "Transport",
-          data: expensesModel.transport
+          name: "TRANSPORT",
+          data: expensesModel.transport,
+          color: "#FFA500"
         },
         {
-          name: "Education",
-          data: expensesModel.education
+          name: "EDUCATION",
+          data: expensesModel.education,
+          color: "#FFC0CB"
         },
         {
-          name: "Clothing",
-          data: expensesModel.clothing
+          name: "CLOTHING",
+          data: expensesModel.clothing,
+          color: "#000080"
         },
         {
-          name: "Other",
-          data: expensesModel.other
+          name: "OTHER",
+          data: expensesModel.other,
+          color: "#A52A2A"
         }
         ];
 
@@ -403,8 +357,6 @@ export class ManageExpensesComponent {
       }
 
       this.isShowLineChartMonth = true;
-      console.log(this.lineChartMonthOptions);
-      console.log(this.lineChartDayOptions);
     });
   }
 
@@ -426,6 +378,99 @@ export class ManageExpensesComponent {
 
     return false;
   }
+
+  checkboxValueChanged(checked: boolean, option: OptionItem) {
+    console.log("Changed");
+    console.log(option);
+    option.isChecked = checked;
+
+    let newSeries: ApexAxisChartSeries = [];
+    if (this.options[0].isChecked) {
+      newSeries.push({
+        name: this.options[0].name,
+        data: this.expensesModel.receipt,
+        color: "#FF0000"
+      });
+    }
+
+    if (this.options[1].isChecked) {
+      newSeries.push({
+        name: this.options[1].name,
+        data: this.expensesModel.invoice,
+        color: "#0000FF"
+      });
+    }
+
+    if (this.options[2].isChecked) {
+      newSeries.push({
+        name: this.options[2].name,
+        data: this.expensesModel.rent,
+        color: "#008000"
+      });
+    }
+
+    if (this.options[3].isChecked) {
+      newSeries.push({
+        name: this.options[3].name,
+        data: this.expensesModel.fuel,
+        color: "#ADD8E6"
+      });
+    }
+
+    if (this.options[4].isChecked) {
+      newSeries.push({
+        name: this.options[4].name,
+        data: this.expensesModel.food,
+        color: "#800080"
+      });
+    }
+
+    if (this.options[5].isChecked) {
+      newSeries.push({
+        name: this.options[5].name,
+        data: this.expensesModel.transport,
+        color: "#FFA500"
+      });
+    }
+
+    if (this.options[6].isChecked) {
+      newSeries.push({
+        name: this.options[6].name,
+        data: this.expensesModel.education,
+        color: "#FFC0CB"
+      });
+    }
+
+    if (this.options[7].isChecked) {
+      newSeries.push({
+        name: this.options[7].name,
+        data: this.expensesModel.clothing,
+        color: "#000080"
+      });
+    }
+
+    if (this.options[8].isChecked) {
+      newSeries.push({
+        name: this.options[8].name,
+        data: this.expensesModel.other,
+        color: "#A52A2A"
+      });
+    }
+
+    console.log(newSeries);
+    this.lineChartMonthOptions.series = newSeries;
+    this.monthChart?.updateSeries(this.lineChartMonthOptions.series);
+  }
+
+  findIndexInList(name: string): number {
+    for (let i = 0; i < this.lineChartMonthOptions.series.length; i++) {
+      if (this.lineChartMonthOptions.series[i].name.toLowerCase() == name.toLowerCase()) {
+        return i;
+      }
+    }
+
+    return -1;
+  }
 }
 
 type MonthItem = {
@@ -441,4 +486,5 @@ type YearItem = {
 type OptionItem = {
   name: string,
   icon: string
+  isChecked: boolean
 };

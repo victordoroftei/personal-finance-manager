@@ -66,7 +66,7 @@
 
         <div class="row" *ngFor="let option of options">
           <div class="col-sm-8 mt-3 fw-bold mx-5">
-            <mat-checkbox color="primary">
+            <mat-checkbox color="primary" [checked]="option.isChecked" (change)="checkboxValueChanged($event.checked, option)">
             </mat-checkbox>
             <img src="../../../../assets/icons/{{option.icon}}" height="30px" width="30px">
             <span class="mx-3"><strong>{{option.name}}</strong></span>
@@ -82,7 +82,7 @@
         <h4 *ngIf="isShowNoData" class="fw-bold text-center my-3">{{showNoDataMessage}}</h4>
         <div class="row mt-3" *ngIf="isShowLineChartMonth">
           <div class="col-lg-11">
-            <apx-chart
+            <apx-chart #monthChart
               [series]="lineChartMonthOptions.series"
               [chart]="lineChartMonthOptions.chart"
               [xaxis]="lineChartMonthOptions.xaxis"

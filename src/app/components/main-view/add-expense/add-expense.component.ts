@@ -36,6 +36,7 @@ export class AddExpenseComponent {
     this.addOptionItem("INVOICE", "invoice.png");
     this.addOptionItem("RENT", "rent.png");
     this.addOptionItem("FUEL", "fuel.png");
+    this.addOptionItem("FOOD", "food.png");
     this.addOptionItem("TRANSPORT", "transport.png");
     this.addOptionItem("EDUCATION", "education.png");
     this.addOptionItem("CLOTHING", "clothing.png");
