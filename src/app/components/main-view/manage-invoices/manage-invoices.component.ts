@@ -1,6 +1,9 @@
 import {Component} from '@angular/core';
 import {InvoiceService} from "../../../services/invoice-service";
 import {InvoiceModel} from "../../../models/invoice.model";
+import {DueInvoicesDialogComponent} from "../main-navbar/due-invoices-dialog/due-invoices-dialog.component";
+import {MatDialog} from "@angular/material/dialog";
+import {InvoiceEntity} from "../../../models/invoice.entity";
 
 @Component({
   selector: 'app-manage-invoices',
@@ -25,9 +28,9 @@ export class ManageInvoicesComponent {
 
   showYearInputError: boolean = false;
 
-  filteredInvoices: InvoiceModel[] = [];
+  filteredInvoices: InvoiceEntity[] = [];
 
-  constructor(invoiceService: InvoiceService) {
+  constructor(invoiceService: InvoiceService, private dialog: MatDialog) {
     this.invoiceService = invoiceService;
   }
 
@@ -108,6 +111,16 @@ export class ManageInvoicesComponent {
     }
 
     return this.formatDate(date);
+  }
+
+  onPayClick(invoice: InvoiceEntity) {
+    const dialogRef = this.dialog.open(DueInvoicesDialogComponent, {
+      data: {invoice: invoice}
+    });
+
+    dialogRef.afterClosed().subscribe(result => {
+      console.log("Dialog closed");
+    });
   }
 }
 

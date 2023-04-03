@@ -130,15 +130,20 @@
 
         <div class="col-sm-2 text-center">
           <div class="row">
-            <p>
-              <strong>Paid Date:</strong>
+            <p *ngIf="invoice.paidDate != null">
+              <strong>Payment Date:</strong>
+            </p>
+
+            <p class="error-message fw-bold" *ngIf="invoice.paidDate == null">
+              {{getPaidDate(invoice.paidDate)}}
             </p>
           </div>
 
           <div class="row">
-            <p class="error-message fw-bold" *ngIf="invoice.paidDate == null">
-              {{getPaidDate(invoice.paidDate)}}
-            </p>
+            <button mat-button class="btn btn-primary" *ngIf="invoice.paidDate == null" (click)="onPayClick(invoice)">
+              <mat-icon [ngStyle]="{'color':'green'}">attach_money</mat-icon>
+              Pay Invoice
+            </button>
 
             <p *ngIf="invoice.paidDate != null">
               {{getPaidDate(invoice.paidDate)}}

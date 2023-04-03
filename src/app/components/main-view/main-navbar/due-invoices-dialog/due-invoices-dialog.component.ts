@@ -42,6 +42,10 @@ export class DueInvoicesDialogComponent {
 
   closeDialog(): void {
     this.dialogRef.close();
+  }
+
+  onNoClick(): void {
+    this.dialogRef.close();
     window.location.reload();
   }
 }
