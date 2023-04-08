@@ -7,7 +7,6 @@ export interface DialogData {
   invoice: InvoiceEntity
 }
 
-
 @Component({
   selector: 'app-due-invoices-dialog',
   templateUrl: './due-invoices-dialog.component.html',

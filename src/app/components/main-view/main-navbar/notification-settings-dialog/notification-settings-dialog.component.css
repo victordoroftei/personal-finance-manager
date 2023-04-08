@@ -1,0 +1,27 @@
+.body-wrapper {
+  border: solid #00A1F2;
+  border-radius: 5px;
+}
+
+button {
+  background-color: #00A1F2;
+  color: white !important;
+}
+
+button:hover {
+  background-color: #0b5f89;
+  transition: all 0.2s ease;
+  color: white !important;
+}
+
+.error-message {
+  color: red !important;
+}
+
+.small-input {
+  width: 3rem;
+}
+
+.big-text {
+  font-size: 1.25rem;
+}
