@@ -6,6 +6,7 @@ import {Router} from "@angular/router";
 import {JWTPayload} from "../components/login/login.component";
 import jwtDecode from "jwt-decode";
 import {UserModel} from "../models/user.model";
+import {UserSettingsModel} from "../models/user-settings.model";
 
 @Injectable({
   providedIn: 'root'
@@ -27,6 +28,19 @@ export class UserService {
 
   getUserById() {
     let url: string = this.usersUrl;
+    let token = localStorage.getItem("token");
+
+    return this.httpClient.get<HttpResponse<any>>(url, {
+      headers: {
+        "Authorization": "Bearer " + token,
+        "Content-Type": "application/json"
+      },
+      observe: "response" as "body"
+    });
+  }
+
+  getUserSettingsById() {
+    let url: string = `${this.usersUrl}/settings`;
     let token = localStorage.getItem("token");
 
     return this.httpClient.get<HttpResponse<any>>(url, {
@@ -108,7 +122,7 @@ export class UserService {
   }
 
   updateAccount(userModel: UserModel): Observable<any> {
-    let url = "http://localhost:8080/users";
+    let url = this.usersUrl;
     let token = localStorage.getItem("token");
 
     return this.httpClient.put(url, userModel, {
@@ -116,6 +130,19 @@ export class UserService {
         'Authorization': "Bearer " + token,
         'Content-Type': 'application/json'
       }
+    });
+  }
+
+  updateAccountSettings(userSettingsModel: UserSettingsModel): Observable<any> {
+    let url = `${this.usersUrl}/settings`;
+    let token = localStorage.getItem("token");
+
+    return this.httpClient.put(url, userSettingsModel, {
+      headers: {
+        'Authorization': "Bearer " + token,
+        'Content-Type': 'application/json'
+      },
+      observe: "response" as "body"
     });
   }
 }

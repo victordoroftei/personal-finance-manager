@@ -1,0 +1,24 @@
+<div class="body-wrapper">
+
+  <h1 mat-dialog-title class="fw-bold text-center big-text mb-3">Notification Settings</h1>
+
+  <div mat-dialog-content class="dialog-content fw-bold">
+    <div class="option my-2">
+      Notify me about due invoices
+      <input matInput type="number" class="small-input" [(ngModel)]="notificationDaysModel" name="notificationDaysModel" min="1" max="14">
+      days before their due date.
+    </div>
+
+    <div class="option my-2">
+      Send me an SMS message
+      <input matInput type="number" class="small-input" [(ngModel)]="smsDaysModel" name="smsDaysModel" min="1" max="14">
+      before any invoice is due.
+    </div>
+  </div>
+
+  <div mat-dialog-actions class="dialog-actions" align="center">
+    <button mat-button class="btn btn-primary fw-bold mx-2" (click)="onSaveChangesClick()">Save Changes</button>
+    <button mat-button class="btn btn-primary fw-bold" (click)="onCancelClick()">Cancel</button>
+  </div>
+
+</div>

@@ -43,6 +43,7 @@ import { ManageInvoicesComponent } from './components/main-view/manage-invoices/
 import { DueInvoicesDialogComponent } from './components/main-view/main-navbar/due-invoices-dialog/due-invoices-dialog.component';
 import { AddExpenseComponent } from './components/main-view/add-expense/add-expense.component';
 import { ManageExpensesComponent } from './components/main-view/manage-expenses/manage-expenses.component';
+import { NotificationSettingsDialogComponent } from './components/main-view/main-navbar/notification-settings-dialog/notification-settings-dialog.component';
 
 @NgModule({
   declarations: [
@@ -71,6 +72,7 @@ import { ManageExpensesComponent } from './components/main-view/manage-expenses/
     DueInvoicesDialogComponent,
     AddExpenseComponent,
     ManageExpensesComponent,
+    NotificationSettingsDialogComponent,
   ],
     imports: [
         BrowserModule,

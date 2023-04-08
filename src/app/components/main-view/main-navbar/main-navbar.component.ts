@@ -4,6 +4,9 @@ import {InvoiceService} from "../../../services/invoice-service";
 import {MatDialog} from "@angular/material/dialog";
 import {DueInvoicesDialogComponent} from "./due-invoices-dialog/due-invoices-dialog.component";
 import {InvoiceEntity} from "../../../models/invoice.entity";
+import {
+  NotificationSettingsDialogComponent
+} from "./notification-settings-dialog/notification-settings-dialog.component";
 
 export interface DialogData {
   invoice: InvoiceEntity;
@@ -49,7 +52,15 @@ export class MainNavbarComponent implements OnInit {
     });
 
     dialogRef.afterClosed().subscribe(result => {
-      console.log("Dialog closed");
+      console.log("Payment confirmation dialog closed");
+    });
+  }
+
+  openNotificationSettingsDialog(): void {
+    const dialogRef = this.dialog.open(NotificationSettingsDialogComponent);
+
+    dialogRef.afterClosed().subscribe(result => {
+      console.log("Notification settings dialog closed");
     });
   }
 }

@@ -55,12 +55,31 @@
         </div>
       </mat-menu>
 
+      <!--
       <button type="button" class="btn btn-dark" routerLink="/main-view/manage-account">
         <div class="gap-2 with-icon">
           <mat-icon fontIcon="person"></mat-icon>
           My Account
         </div>
       </button>
+      -->
+
+      <button type="button" class="btn btn-dark" [matMenuTriggerFor]="settingsMenu">
+        <div class="gap-2 with-icon">
+          <mat-icon fontIcon="person"></mat-icon>
+          My Account
+        </div>
+      </button>
+
+      <mat-menu #settingsMenu="matMenu" class="custom-mat-menu">
+        <div mat-menu-item class="fw-bold my-2" routerLink="/main-view/manage-account">
+          Account Settings
+        </div>
+
+        <div mat-menu-item class="fw-bold my-2" (click)="openNotificationSettingsDialog()">
+          Notification Settings
+        </div>
+      </mat-menu>
 
       <button type="button" class="btn btn-dark" (click)="logout()">
         <div class="gap-2 with-icon">
