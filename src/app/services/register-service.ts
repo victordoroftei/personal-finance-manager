@@ -14,8 +14,8 @@ export class RegisterService {
 
   }
 
-  register(firstName: string, lastName: string, emailAddress: string, password: string) {
-    return this.http.post(this.registerUrl, new UserModel(0, firstName, lastName, emailAddress, password), {
+  register(firstName: string, lastName: string, emailAddress: string, password: string, phoneNumber: string) {
+    return this.http.post(this.registerUrl, new UserModel(0, firstName, lastName, emailAddress, password, phoneNumber), {
       responseType: 'text'
     });
   }

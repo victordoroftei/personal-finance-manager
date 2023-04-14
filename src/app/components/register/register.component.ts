@@ -39,17 +39,27 @@ export class RegisterComponent {
     firstName: new FormControl('', [Validators.required]),
     lastName: new FormControl('', [Validators.required]),
     email: new FormControl('', [Validators.required]),
+    phoneNumber: new FormControl('', [Validators.required]),
     password: new FormControl('', [Validators.required]),
     confirmPassword: new FormControl('', [Validators.required]),
   });
 
   showFirstNameError = false;
+
   showLastNameError = false;
+
   showEmailAddressError = false;
+
   showUsedEmailAddressError = false
+
   showPasswordError = false;
+
   showPasswordsUnmatch = false;
+
   showConfirmPasswordError = false;
+
+  showPhoneNumberError = false;
+
   isLoading = false;
 
   onSubmit(form: FormGroup) {
@@ -58,10 +68,12 @@ export class RegisterComponent {
     const email = form.value.email;
     const password = form.value.password;
     const confirmPassword = form.value.confirmPassword;
+    const phoneNumber = form.value.phoneNumber;
 
     this.showFirstNameError = false;
     this.showLastNameError = false;
     this.showEmailAddressError = false;
+    this.showPhoneNumberError = false;
     this.showUsedEmailAddressError = false;
     this.showPasswordError = false;
     this.showPasswordsUnmatch = false;
@@ -80,6 +92,12 @@ export class RegisterComponent {
       this.showEmailAddressError = true;
     }
 
+    console.log(phoneNumber);
+    console.log(phoneNumber.charAt(0));
+    if (phoneNumber == null || phoneNumber == "" || phoneNumber.length < 12 || phoneNumber.charAt(0) != '+') {
+      this.showPhoneNumberError = true;
+    }
+
     if (password == null || password == "" || password.length < 8) {
       this.showPasswordError = true;
     }
@@ -95,12 +113,13 @@ export class RegisterComponent {
     if (!this.showFirstNameError &&
       !this.showLastNameError &&
       !this.showEmailAddressError &&
+      !this.showPhoneNumberError &&
       !this.showPasswordError &&
       !this.showConfirmPasswordError &&
       !this.showPasswordsUnmatch) {
 
         this.isLoading = true;
-        this.registerService.register(firstName, lastName, email, password).subscribe(() => {
+        this.registerService.register(firstName, lastName, email, password, phoneNumber).subscribe(() => {
             this.isLoading = false;
             this.openDialog();
             //this.router.navigate(["/login"]);

@@ -45,7 +45,7 @@
       <div class="form-floating mb-3">
         <input type="email" class="form-control" id="input-email" name="input-email"
                placeholder="Enter your email address..." formControlName="email">
-        <label for="input-email" class="form-label">Email address</label>
+        <label for="input-email" class="form-label">Email Address</label>
       </div>
       <small class="error-message fw-bold"
              *ngIf="showEmailAddressError">
@@ -55,6 +55,18 @@
              *ngIf="showUsedEmailAddressError">
         Email address already in use!
       </small>
+
+      <hr style="color: white">
+      <div class="form-floating mb-3">
+        <input type="email" class="form-control" id="input-phone-number" name="input-phone-number"
+               placeholder="Enter your phone number..." formControlName="phoneNumber">
+        <label for="input-phone-number" class="form-label">Phone Number (With Country Code)</label>
+      </div>
+      <small class="error-message fw-bold"
+             *ngIf="showPhoneNumberError">
+        Invalid phone number!
+      </small>
+
       <hr style="color: white">
       <div class="form-floating mb-3">
         <input type="password" class="form-control" id="input-password" name="input-password"
@@ -70,7 +82,7 @@
       <div class="form-floating mb-3">
         <input type="password" class="form-control mb-3" id="input-repeat-password" name="input-repeat-password"
                placeholder="Confirm your password..." formControlName="confirmPassword">
-        <label for="input-repeat-password">Confirm password</label>
+        <label for="input-repeat-password">Confirm Password</label>
       </div>
       <small class="error-message fw-bold"
              *ngIf="showPasswordsUnmatch">
