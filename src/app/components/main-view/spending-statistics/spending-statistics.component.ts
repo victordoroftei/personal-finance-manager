@@ -22,6 +22,7 @@ import {
   ApexTitleSubtitle
 } from "ng-apexcharts";
 import {YearlyStatisticsModel} from "../../../models/yearly-statistics.model";
+import {ExpenseService} from "../../../services/expense-service";
 
 export type PieChartOptions = {
   series: ApexNonAxisChartSeries,
@@ -86,7 +87,7 @@ export class SpendingStatisticsComponent {
 
   isShowLineChart: boolean = false;
 
-  constructor(private statisticsService: StatisticsService, private receiptService: ReceiptService, private dialog: MatDialog) {
+  constructor(private statisticsService: StatisticsService, private receiptService: ReceiptService, private expenseService: ExpenseService, private dialog: MatDialog) {
     this.myControl = new FormControl();
     this.myControl.valueChanges.subscribe(value => {
       console.log("Input value changed: ", value);
@@ -213,7 +214,7 @@ export class SpendingStatisticsComponent {
       ];
     });
 
-    this.receiptService.getPossibleYears().subscribe(data => {
+    this.expenseService.getPossibleYears().subscribe(data => {
       if (data.body.length == 0) {
         let item: YearItem = {
           displayedValue: '2023',
