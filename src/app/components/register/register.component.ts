@@ -122,7 +122,6 @@ export class RegisterComponent {
         this.registerService.register(firstName, lastName, email, password, phoneNumber).subscribe(() => {
             this.isLoading = false;
             this.openDialog();
-            //this.router.navigate(["/login"]);
           },
           error => {
             let errors = error.error;

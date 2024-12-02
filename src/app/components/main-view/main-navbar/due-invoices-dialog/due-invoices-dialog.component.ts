@@ -28,7 +28,6 @@ export class DueInvoicesDialogComponent {
 
   onYesClick(): void {
     this.invoiceService.payInvoice(this.data.invoice).subscribe(data => {
-      console.log("OK INVOICE PAID!");
       this.isNothing = false;
       this.isSuccess = true;
       this.successMessage = "The invoice has been paid!";

@@ -323,12 +323,6 @@ export class ReceiptFormComponent {
           this.addCalculatedTotalField(this.receivedData.calculatedTotal);
         }
 
-        /*
-        if (this.receivedData.detectedTotal != null) {
-          this.addDetectedTotalField(this.receivedData.detectedTotal);
-        }
-         */
-
         let itemNames: Array<string> = this.receivedData.itemNames;
         let itemPrices: Array<number> = this.receivedData.itemPrices;
 

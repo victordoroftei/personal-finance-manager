@@ -208,8 +208,6 @@ export class ManageExpensesComponent {
         return;
       }
 
-      //this.possibleYears = data.body;
-
       let item: YearItem = {
         displayedValue: "Any Year",
         actualValue: -1
